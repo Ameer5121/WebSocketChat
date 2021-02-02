@@ -1,0 +1,67 @@
+﻿<Window x:Class="WebSocketChat.Views.HomeView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WebSocketChat.Views"
+        mc:Ignorable="d"
+        Title="HomeView" 
+        Height="592.5" 
+        Width="681.5"
+        WindowStartupLocation="CenterScreen" 
+        WindowStyle="None"
+        BorderBrush="Transparent" 
+        ResizeMode="NoResize" 
+        MouseDown="Window_MouseDown"
+        Background="#FF575757">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="13*"/>
+            <RowDefinition Height="135*"/>
+        </Grid.RowDefinitions>
+
+        <!--Black Border & Exit Button-->
+        <Border Background="#FF2C2B2B" Grid.Row="0">
+            <Button Margin="631,0,0,0" BorderBrush="Transparent" Style="{StaticResource ExitButton}" Click="Exit_Click">
+                <Image Source="/Resources/Exit.png" Height="39" Width="42"></Image>
+            </Button>
+        </Border>
+
+        <TextBlock Text="WebSocket Chat" 
+                   Margin="265,10,304,505"
+                   Grid.Row="1"
+                   TextAlignment="Center"
+                   FontSize="15"
+                   Foreground="White"></TextBlock>
+        
+        <!--Name-->
+        <TextBlock Margin="284,99,328,411" 
+                   Grid.Row="1" 
+                   Text="Name:" 
+                   TextAlignment="Center"
+                   FontSize="20"
+                   Foreground="Silver"></TextBlock>
+        
+        <TextBox HorizontalAlignment="Right" 
+                 Width="184" 
+                 Margin="0,136,271,352" 
+                 Grid.Row="1"
+                 FontSize="20"></TextBox>
+        
+        <!--Connect-->
+        <Button Margin="227,220,271,228" 
+                Grid.Row="1"
+                Style="{StaticResource SubmitButton}"
+                Content="Connect" 
+                FontSize="25"
+                Foreground="White" Background="DimGray"></Button>
+       
+        <!--Host-->
+        <Button Margin="227,337,271,111" 
+            Grid.Row="1"
+            Style="{StaticResource SubmitButton}"
+            Content="Host" 
+            FontSize="25"
+            Foreground="White"/>
+    </Grid>
+</Window>

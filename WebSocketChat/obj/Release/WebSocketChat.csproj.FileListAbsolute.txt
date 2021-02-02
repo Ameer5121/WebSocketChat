@@ -1,0 +1,15 @@
+D:\Projects\Gits\WebSocketChat\WebSocketChat\WebSocketChat\bin\Release\WebSocketChat.exe.config
+D:\Projects\Gits\WebSocketChat\WebSocketChat\WebSocketChat\bin\Release\WebSocketChat.exe
+D:\Projects\Gits\WebSocketChat\WebSocketChat\WebSocketChat\bin\Release\WebSocketChat.pdb
+D:\Projects\Gits\WebSocketChat\WebSocketChat\WebSocketChat\obj\Release\WebSocketChat.csprojAssemblyReference.cache
+D:\Projects\Gits\WebSocketChat\WebSocketChat\WebSocketChat\obj\Release\MainWindow.g.cs
+D:\Projects\Gits\WebSocketChat\WebSocketChat\WebSocketChat\obj\Release\App.g.cs
+D:\Projects\Gits\WebSocketChat\WebSocketChat\WebSocketChat\obj\Release\WebSocketChat_MarkupCompile.cache
+D:\Projects\Gits\WebSocketChat\WebSocketChat\WebSocketChat\obj\Release\WebSocketChat_MarkupCompile.lref
+D:\Projects\Gits\WebSocketChat\WebSocketChat\WebSocketChat\obj\Release\MainWindow.baml
+D:\Projects\Gits\WebSocketChat\WebSocketChat\WebSocketChat\obj\Release\WebSocketChat.g.resources
+D:\Projects\Gits\WebSocketChat\WebSocketChat\WebSocketChat\obj\Release\WebSocketChat.Properties.Resources.resources
+D:\Projects\Gits\WebSocketChat\WebSocketChat\WebSocketChat\obj\Release\WebSocketChat.csproj.GenerateResource.cache
+D:\Projects\Gits\WebSocketChat\WebSocketChat\WebSocketChat\obj\Release\WebSocketChat.csproj.CoreCompileInputs.cache
+D:\Projects\Gits\WebSocketChat\WebSocketChat\WebSocketChat\obj\Release\WebSocketChat.exe
+D:\Projects\Gits\WebSocketChat\WebSocketChat\WebSocketChat\obj\Release\WebSocketChat.pdb
