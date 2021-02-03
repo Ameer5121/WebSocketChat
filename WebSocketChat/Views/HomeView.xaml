@@ -33,7 +33,7 @@
                    TextAlignment="Center"
                    FontSize="15"
                    Foreground="White"></TextBlock>
-        
+
         <!--Name-->
         <TextBlock Margin="284,99,328,411" 
                    Grid.Row="1" 
@@ -41,14 +41,14 @@
                    TextAlignment="Center"
                    FontSize="20"
                    Foreground="Silver"></TextBlock>
-        
+
         <TextBox HorizontalAlignment="Right" 
                  Width="184" 
                  Margin="0,136,271,352" 
                  Grid.Row="1"
                  FontSize="20"
-                 Text="{Binding Name}"></TextBox>
-        
+                 Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+
         <!--Connect-->
         <Button Margin="227,220,271,228" 
                 Grid.Row="1"
@@ -56,7 +56,7 @@
                 Content="Connect" 
                 FontSize="25"
                 Foreground="White" Background="DimGray"></Button>
-       
+
         <!--Host-->
         <Button Margin="227,337,271,111" 
             Grid.Row="1"
