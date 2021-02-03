@@ -35,3 +35,4 @@ D:\Projects\Gits\WebSocketChat\WebSocketChat\ChattingHub\obj\Debug\net5.0\Chatti
 D:\Projects\Gits\WebSocketChat\WebSocketChat\ChattingHub\obj\Debug\net5.0\ref\ChattingHub.dll
 D:\Projects\Gits\WebSocketChat\WebSocketChat\ChattingHub\obj\Debug\net5.0\ChattingHub.pdb
 D:\Projects\Gits\WebSocketChat\WebSocketChat\ChattingHub\obj\Debug\net5.0\ChattingHub.genruntimeconfig.cache
+D:\Projects\Gits\WebSocketChat\WebSocketChat\ChattingHub\obj\Debug\net5.0\ChattingHub.csprojAssemblyReference.cache

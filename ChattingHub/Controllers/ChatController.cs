@@ -12,14 +12,16 @@ namespace ChattingHub.Controllers
     [ApiController]
     public class ChatController : ControllerBase
     {
+        private ILogger<ChatController> _logger;
         private ChatHub _chathub;
-        public ChatController()
+        public ChatController(ILogger<ChatController> logger, ChatHub chathub)
         {
-            _chathub = new ChatHub();
+            _chathub = chathub;
+            _logger = logger;
         }
 
         [HttpGet]
-        [Route("api/[controller]/messages")]
+        [Route("api/chat/messages")]
         public void GetMessages()
         {
             _chathub.SendMessages();
