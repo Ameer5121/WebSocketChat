@@ -55,7 +55,8 @@
                 Style="{StaticResource SubmitButton}"
                 Content="Connect" 
                 FontSize="25"
-                Foreground="White" Background="DimGray"></Button>
+                Foreground="White"
+                Command="{Binding Connect}"></Button>
 
         <!--Host-->
         <Button Margin="227,337,271,111" 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.IO;
 using System.Diagnostics;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 using WebSocketChat.Models;
 using System.Windows.Input;
 using WebSocketChat.Commands;
+using Microsoft.AspNetCore.SignalR.Client;
 
 namespace WebSocketChat.ViewModels
 {
@@ -39,15 +41,20 @@ namespace WebSocketChat.ViewModels
             return _name == null ? false : true;
         }
 
-        private void ConnectToServer()
+        private async Task ConnectToServer()
         {
-
+           var connection = new HubConnectionBuilder()
+                .WithUrl("https://localhost:5001/chathub")
+                .Build();
+            await connection.StartAsync();
+            //
         }
 
         private void HostServer()
         {
             var server = GetServer();
             server.Start();
+            _ishosting = true;
         }
 
         private Process GetServer()

@@ -14,9 +14,9 @@ namespace ChattingHub.Controllers
     {
         private ILogger<ChatController> _logger;
         private ChatHub _chathub;
-        public ChatController(ILogger<ChatController> logger, ChatHub chathub)
+        public ChatController(ILogger<ChatController> logger)
         {
-            _chathub = chathub;
+            _chathub = new ChatHub();
             _logger = logger;
         }
 
