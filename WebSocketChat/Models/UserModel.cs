@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace WebSocketChat.Models
 {
-    class UserModel
+    readonly struct UserModel
     {
-        private string _name;
-        public string Name
+        public readonly string Name;
+
+        public UserModel(string name)
         {
-            get => _name;
-            set => _name = value;
+            this.Name = name;
         }
     }
 }

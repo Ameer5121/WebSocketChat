@@ -9,12 +9,12 @@ WebSocketChat
 none
 false
 TRACE
-D:\Projects\Gits\WebSocketChat\WebSocketChat\WebSocketChat\App.xaml
-11151548125
+D:\Projects\Gits\WebSocketChat\WebSocketChat\WebSocketChat\Views\App.xaml
+31560829262
 
-6-560541532
+101026347623
 13-1505183044
-MainWindow.xaml;
+Resources\ButtonStyles.xaml;Resources\TextBoxStyles.xaml;Views\HomeView.xaml;
 
-False
+True
 

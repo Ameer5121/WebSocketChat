@@ -46,7 +46,8 @@
                  Width="184" 
                  Margin="0,136,271,352" 
                  Grid.Row="1"
-                 FontSize="20"></TextBox>
+                 FontSize="20"
+                 Text="{Binding Name}"></TextBox>
         
         <!--Connect-->
         <Button Margin="227,220,271,228" 
@@ -62,6 +63,7 @@
             Style="{StaticResource SubmitButton}"
             Content="Host" 
             FontSize="25"
-            Foreground="White"/>
+            Foreground="White"
+            Command="{Binding Host}"/>
     </Grid>
 </Window>
