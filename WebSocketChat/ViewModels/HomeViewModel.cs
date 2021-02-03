@@ -13,6 +13,7 @@ namespace WebSocketChat.ViewModels
 {
     class HomeViewModel
     {
+        private bool _ishosting;
         private string _name;
         public string Name
         {
@@ -26,10 +27,21 @@ namespace WebSocketChat.ViewModels
         }
 
         public ICommand Host => new RelayCommand(HostServer, CanHostServer);
+        public ICommand Connect => new RelayCommand(ConnectToServer, CanConnectToServer);
+
 
         private bool CanHostServer()
         {
+            return _name == null || _ishosting ? false : true;
+        }
+        private bool CanConnectToServer()
+        {
             return _name == null ? false : true;
+        }
+
+        private void ConnectToServer()
+        {
+
         }
 
         private void HostServer()
