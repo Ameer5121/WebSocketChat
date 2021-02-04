@@ -76,13 +76,14 @@
           "Microsoft.AspNetCore.App"
         ]
       },
-      "WebSocketChat/1.0.0": {
+      "Models/1.0.0": {
         "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
         "compile": {
-          "bin/placeholder/WebSocketChat.dll": {}
+          "bin/placeholder/Models.dll": {}
         },
         "runtime": {
-          "bin/placeholder/WebSocketChat.dll": {}
+          "bin/placeholder/Models.dll": {}
         }
       }
     }
@@ -195,16 +196,16 @@
         "swashbuckle.aspnetcore.swaggerui.nuspec"
       ]
     },
-    "WebSocketChat/1.0.0": {
+    "Models/1.0.0": {
       "type": "project",
-      "path": "../WebSocketChat/WebSocketChat.csproj",
-      "msbuildProject": "../WebSocketChat/WebSocketChat.csproj"
+      "path": "../Models/Models.csproj",
+      "msbuildProject": "../Models/Models.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
-      "Swashbuckle.AspNetCore >= 5.6.3",
-      "WebSocketChat >= 1.0.0"
+      "Models >= 1.0.0",
+      "Swashbuckle.AspNetCore >= 5.6.3"
     ]
   },
   "packageFolders": {
@@ -234,8 +235,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "D:\\Projects\\Gits\\WebSocketChat\\WebSocketChat\\WebSocketChat\\WebSocketChat.csproj": {
-              "projectPath": "D:\\Projects\\Gits\\WebSocketChat\\WebSocketChat\\WebSocketChat\\WebSocketChat.csproj"
+            "D:\\Projects\\Gits\\WebSocketChat\\WebSocketChat\\Models\\Models.csproj": {
+              "projectPath": "D:\\Projects\\Gits\\WebSocketChat\\WebSocketChat\\Models\\Models.csproj"
             }
           }
         }

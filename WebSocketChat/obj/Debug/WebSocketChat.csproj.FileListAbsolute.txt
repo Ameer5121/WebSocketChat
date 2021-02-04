@@ -19,4 +19,3 @@ D:\Projects\Gits\WebSocketChat\WebSocketChat\WebSocketChat\obj\Debug\WebSocketCh
 D:\Projects\Gits\WebSocketChat\WebSocketChat\WebSocketChat\obj\Debug\WebSocketChat.csproj.CopyComplete
 D:\Projects\Gits\WebSocketChat\WebSocketChat\WebSocketChat\obj\Debug\WebSocketChat.exe
 D:\Projects\Gits\WebSocketChat\WebSocketChat\WebSocketChat\obj\Debug\WebSocketChat.pdb
-D:\Projects\Gits\WebSocketChat\WebSocketChat\WebSocketChat\obj\Debug\WebSocketChat.csprojAssemblyReference.cache

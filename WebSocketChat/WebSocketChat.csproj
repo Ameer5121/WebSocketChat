@@ -220,9 +220,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Events\ConnectionEventArgs.cs" />
-    <Compile Include="Models\DataModel.cs" />
-    <Compile Include="Models\MessageModel.cs" />
-    <Compile Include="Models\UserModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -290,6 +287,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Exit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{96ff86bc-25d1-4ce0-9adc-b4652ff068ba}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

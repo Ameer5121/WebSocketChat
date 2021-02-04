@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebSocketChat.Models
+namespace Models
 {
     public struct UserModel
     {
         private string _name;
-        public string Name 
+        public string Name
         {
             get => _name;
-            set => _name = value;  
+            set => _name = value;
         }
     }
 }

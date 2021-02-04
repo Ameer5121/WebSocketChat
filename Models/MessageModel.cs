@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebSocketChat.Models
+namespace Models
 {
     public readonly struct MessageModel
     {

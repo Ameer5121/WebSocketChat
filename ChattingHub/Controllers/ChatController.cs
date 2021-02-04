@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebSocketChat.Models;
+using Models;
 
 namespace ChattingHub.Controllers
 {
@@ -27,7 +27,7 @@ namespace ChattingHub.Controllers
         {
             if(user.Name != null)
             {
-                _chathub.UsersAndMessages.Users.Add(user);
+                DataModel.Users.Add(user);
             }
         }
     }

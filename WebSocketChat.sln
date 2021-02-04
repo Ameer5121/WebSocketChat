@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebSocketChat", "WebSocketChat\WebSocketChat.csproj", "{B2067FB9-ACC9-48D4-A76F-A499C53F4890}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChattingHub", "ChattingHub\ChattingHub.csproj", "{99842DC9-4120-4FC4-BE39-BD7577A143F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChattingHub", "ChattingHub\ChattingHub.csproj", "{99842DC9-4120-4FC4-BE39-BD7577A143F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{96FF86BC-25D1-4CE0-9ADC-B4652FF068BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{99842DC9-4120-4FC4-BE39-BD7577A143F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99842DC9-4120-4FC4-BE39-BD7577A143F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99842DC9-4120-4FC4-BE39-BD7577A143F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96FF86BC-25D1-4CE0-9ADC-B4652FF068BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96FF86BC-25D1-4CE0-9ADC-B4652FF068BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96FF86BC-25D1-4CE0-9ADC-B4652FF068BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96FF86BC-25D1-4CE0-9ADC-B4652FF068BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

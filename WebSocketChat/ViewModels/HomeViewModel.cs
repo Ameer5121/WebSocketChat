@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http;
-using WebSocketChat.Models;
+using Models;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
 using WebSocketChat.Commands;
@@ -63,7 +63,7 @@ namespace WebSocketChat.ViewModels
             if (result)
             {
                 connection = new HubConnectionBuilder()
-                .WithUrl("https://localhost:5001/chathub")
+                .WithUrl("https://localhost:44358/chathub")
                 .Build();
                 CreateHandlers();
                 await connection.StartAsync();
