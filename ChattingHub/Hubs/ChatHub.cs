@@ -9,11 +9,16 @@ namespace ChattingHub.Hubs
 {
     public class ChatHub : Hub
     {
-        public static DataModel UsersAndMessages;
+        public DataModel UsersAndMessages;
 
+        public ChatHub()
+        {
+            UsersAndMessages = new DataModel();
+        }
         public void SendMessages()
         {
-            Clients.All.SendAsync("Yes");
+            // TODO;
+           // Clients.All.SendAsync("Yes");
         }
 
         public override Task OnConnectedAsync()

@@ -8,13 +8,7 @@ namespace WebSocketChat.Models
 {
     public class DataModel
     {
-        public readonly ObservableCollection<MessageModel> Messages;
-        public readonly ObservableCollection<UserModel> Users;
-
-        public DataModel(ObservableCollection<MessageModel> messages, ObservableCollection<UserModel> users)
-        {
-            Messages = messages;
-            Users = users;
-        }
+        public ObservableCollection<MessageModel> Messages { get; set; }
+        public ObservableCollection<UserModel> Users { get; set; }
     }
 }

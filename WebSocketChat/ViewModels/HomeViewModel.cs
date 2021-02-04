@@ -121,7 +121,6 @@ namespace WebSocketChat.ViewModels
                 return true;
             }
             return false;
-
         }
     }
 }

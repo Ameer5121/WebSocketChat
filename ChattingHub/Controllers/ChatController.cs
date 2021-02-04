@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebSocketChat.Models;
 
 namespace ChattingHub.Controllers
 {
@@ -20,11 +21,14 @@ namespace ChattingHub.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
-        [Route("api/chat/messages")]
-        public void GetMessages()
+        [HttpPost]
+        [Route("api/chat/PostUser")]
+        public void PostUser(UserModel user)
         {
-            _chathub.SendMessages();
+            if(user.Name != null)
+            {
+                _chathub.UsersAndMessages.Users.Add(user);
+            }
         }
     }
 }
