@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net.Http;
 using WebSocketChat.Models;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
@@ -21,6 +22,7 @@ namespace WebSocketChat.ViewModels
         private string _name;
         private string _status;
         public EventHandler<ConnectionEventArgs> OnSuccessfulConnect;
+        private HubConnection connection;
 
         public string Name
         {
@@ -36,7 +38,7 @@ namespace WebSocketChat.ViewModels
         public string Status
         {
             get => _status;
-            set => SetPropertyValue(ref _name, value);       
+            set => SetPropertyValue(ref _status, value);       
         }
 
         public ICommand Host => new RelayCommand(HostServer, CanHostServer);
@@ -54,9 +56,10 @@ namespace WebSocketChat.ViewModels
 
         private async Task ConnectToServer()
         {
-           var connection = new HubConnectionBuilder()
+              connection = new HubConnectionBuilder()
                 .WithUrl("https://localhost:5001/chathub")
                 .Build();
+            CreateHandlers();
             Status = LogStatus("Connecting...");
             await Task.WhenAny(connection.StartAsync(), Task.Delay(2000));
             if (connection.ConnectionId == null)
@@ -64,13 +67,6 @@ namespace WebSocketChat.ViewModels
                 Status = LogStatus("Could not connect to the server!");
                 await Task.Delay(1500);
                 Status = default;
-            }
-            else
-            {
-                connection.On<DataModel>("Connected", (Data) =>
-                {
-                    OnSuccessfulConnect?.Invoke(this, new ConnectionEventArgs { Data = Data });
-                });
             }
         }
 
@@ -96,7 +92,15 @@ namespace WebSocketChat.ViewModels
 
         private string LogStatus(string message)
         {
-            return null;
+           return Status = message;
+        }
+
+        private void CreateHandlers()
+        {
+            connection.On<DataModel>("Connected", (data) =>
+            {
+
+            });
         }
     }
 }

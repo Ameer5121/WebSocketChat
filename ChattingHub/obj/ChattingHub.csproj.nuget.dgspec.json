@@ -27,7 +27,11 @@
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "D:\\Projects\\Gits\\WebSocketChat\\WebSocketChat\\WebSocketChat\\WebSocketChat.csproj": {
+                "projectPath": "D:\\Projects\\Gits\\WebSocketChat\\WebSocketChat\\WebSocketChat\\WebSocketChat.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -65,6 +69,16 @@
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
         }
+      }
+    },
+    "D:\\Projects\\Gits\\WebSocketChat\\WebSocketChat\\WebSocketChat\\WebSocketChat.csproj": {
+      "restore": {
+        "projectUniqueName": "D:\\Projects\\Gits\\WebSocketChat\\WebSocketChat\\WebSocketChat\\WebSocketChat.csproj",
+        "projectName": "WebSocketChat",
+        "projectPath": "D:\\Projects\\Gits\\WebSocketChat\\WebSocketChat\\WebSocketChat\\WebSocketChat.csproj"
+      },
+      "frameworks": {
+        "net472": {}
       }
     }
   }

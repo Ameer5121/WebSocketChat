@@ -11,15 +11,16 @@ D:\Projects\Gits\WebSocketChat\WebSocketChat\ChattingHub\bin\Debug\net5.0\Micros
 D:\Projects\Gits\WebSocketChat\WebSocketChat\ChattingHub\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
 D:\Projects\Gits\WebSocketChat\WebSocketChat\ChattingHub\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 D:\Projects\Gits\WebSocketChat\WebSocketChat\ChattingHub\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\User\Desktop\WebSocket Chat\net5.0\ChattingHub.exe
+C:\Users\User\Desktop\WebSocket Chat\net5.0\ChattingHub.dll
 C:\Users\User\Desktop\WebSocket Chat\net5.0\appsettings.Development.json
 C:\Users\User\Desktop\WebSocket Chat\net5.0\appsettings.json
-C:\Users\User\Desktop\WebSocket Chat\net5.0\ChattingHub.exe
 C:\Users\User\Desktop\WebSocket Chat\net5.0\ChattingHub.deps.json
 C:\Users\User\Desktop\WebSocket Chat\net5.0\ChattingHub.runtimeconfig.json
 C:\Users\User\Desktop\WebSocket Chat\net5.0\ChattingHub.runtimeconfig.dev.json
-C:\Users\User\Desktop\WebSocket Chat\net5.0\ChattingHub.dll
 C:\Users\User\Desktop\WebSocket Chat\net5.0\ref\ChattingHub.dll
 C:\Users\User\Desktop\WebSocket Chat\net5.0\ChattingHub.pdb
+D:\Projects\Gits\WebSocketChat\WebSocketChat\ChattingHub\obj\Debug\net5.0\ChattingHub.csprojAssemblyReference.cache
 D:\Projects\Gits\WebSocketChat\WebSocketChat\ChattingHub\obj\Debug\net5.0\ChattingHub.GeneratedMSBuildEditorConfig.editorconfig
 D:\Projects\Gits\WebSocketChat\WebSocketChat\ChattingHub\obj\Debug\net5.0\ChattingHub.AssemblyInfoInputs.cache
 D:\Projects\Gits\WebSocketChat\WebSocketChat\ChattingHub\obj\Debug\net5.0\ChattingHub.AssemblyInfo.cs
@@ -35,4 +36,3 @@ D:\Projects\Gits\WebSocketChat\WebSocketChat\ChattingHub\obj\Debug\net5.0\Chatti
 D:\Projects\Gits\WebSocketChat\WebSocketChat\ChattingHub\obj\Debug\net5.0\ref\ChattingHub.dll
 D:\Projects\Gits\WebSocketChat\WebSocketChat\ChattingHub\obj\Debug\net5.0\ChattingHub.pdb
 D:\Projects\Gits\WebSocketChat\WebSocketChat\ChattingHub\obj\Debug\net5.0\ChattingHub.genruntimeconfig.cache
-D:\Projects\Gits\WebSocketChat\WebSocketChat\ChattingHub\obj\Debug\net5.0\ChattingHub.csprojAssemblyReference.cache

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WebSocketChat.Models
 {
-    readonly struct MessageModel
+    public readonly struct MessageModel
     {
         public readonly string Message;
         public readonly UserModel User;

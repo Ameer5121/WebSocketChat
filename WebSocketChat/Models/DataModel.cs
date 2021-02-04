@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 namespace WebSocketChat.Models
 {
-    class DataModel
+    public class DataModel
     {
         public readonly ObservableCollection<MessageModel> Messages;
         public readonly ObservableCollection<UserModel> Users;

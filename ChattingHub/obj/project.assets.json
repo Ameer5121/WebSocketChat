@@ -75,6 +75,15 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
+      },
+      "WebSocketChat/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/WebSocketChat.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/WebSocketChat.dll": {}
+        }
       }
     }
   },
@@ -185,11 +194,17 @@
         "swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512",
         "swashbuckle.aspnetcore.swaggerui.nuspec"
       ]
+    },
+    "WebSocketChat/1.0.0": {
+      "type": "project",
+      "path": "../WebSocketChat/WebSocketChat.csproj",
+      "msbuildProject": "../WebSocketChat/WebSocketChat.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
-      "Swashbuckle.AspNetCore >= 5.6.3"
+      "Swashbuckle.AspNetCore >= 5.6.3",
+      "WebSocketChat >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -218,7 +233,11 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\Projects\\Gits\\WebSocketChat\\WebSocketChat\\WebSocketChat\\WebSocketChat.csproj": {
+              "projectPath": "D:\\Projects\\Gits\\WebSocketChat\\WebSocketChat\\WebSocketChat\\WebSocketChat.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
