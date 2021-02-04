@@ -13,10 +13,12 @@ using Microsoft.AspNetCore.SignalR.Client;
 
 namespace WebSocketChat.ViewModels
 {
-    class HomeViewModel
+    class HomeViewModel : ViewModelBase
     {
         private bool _ishosting;
         private string _name;
+        private string _status;
+
         public string Name
         {
             get => _name;
@@ -26,6 +28,12 @@ namespace WebSocketChat.ViewModels
                     return;
                 _name = value;
             }
+        }
+
+        public string Status
+        {
+            get => _status;
+            set => SetPropertyValue(ref _name, value);       
         }
 
         public ICommand Host => new RelayCommand(HostServer, CanHostServer);
@@ -46,8 +54,18 @@ namespace WebSocketChat.ViewModels
            var connection = new HubConnectionBuilder()
                 .WithUrl("https://localhost:5001/chathub")
                 .Build();
-            await connection.StartAsync();
-            //
+            Status = LogStatus("Connecting...");
+            await Task.WhenAny(connection.StartAsync(), Task.Delay(2000));
+            if (connection.ConnectionId == null)
+            {
+                Status = LogStatus("Could not connect to the server!");
+                await Task.Delay(1500);
+                Status = default;
+            }
+            else
+            {
+
+            }
         }
 
         private void HostServer()
@@ -55,6 +73,7 @@ namespace WebSocketChat.ViewModels
             var server = GetServer();
             server.Start();
             _ishosting = true;
+            
         }
 
         private Process GetServer()
@@ -67,6 +86,11 @@ namespace WebSocketChat.ViewModels
             processInfo.FileName = files[0];
             process.StartInfo = processInfo;
             return process;
+        }
+
+        private string LogStatus(string message)
+        {
+            return null;
         }
     }
 }
