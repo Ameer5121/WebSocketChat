@@ -217,6 +217,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Events\ConnectionEventArgs.cs" />
+    <Compile Include="Models\DataModel.cs" />
     <Compile Include="Models\MessageModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />

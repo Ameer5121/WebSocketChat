@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Collections.ObjectModel;
 using WebSocketChat.Commands;
 using Microsoft.AspNetCore.SignalR.Client;
+using WebSocketChat.Events;
 
 namespace WebSocketChat.ViewModels
 {
@@ -19,7 +20,7 @@ namespace WebSocketChat.ViewModels
         private bool _ishosting;
         private string _name;
         private string _status;
-
+        public EventHandler<ConnectionEventArgs> OnSuccessfulConnect;
 
         public string Name
         {
@@ -66,7 +67,10 @@ namespace WebSocketChat.ViewModels
             }
             else
             {
-                //connection.On<>
+                connection.On<DataModel>("Connected", (Data) =>
+                {
+                    OnSuccessfulConnect?.Invoke(this, new ConnectionEventArgs { Data = Data });
+                });
             }
         }
 
