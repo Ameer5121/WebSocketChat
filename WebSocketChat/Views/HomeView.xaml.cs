@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using WebSocketChat.Events;
 using WebSocketChat.ViewModels;
 
 namespace WebSocketChat.Views
@@ -17,6 +18,7 @@ namespace WebSocketChat.Views
         {
             InitializeComponent();
             DataContext = new HomeViewModel();
+            (DataContext as HomeViewModel).OnSuccessfulConnect += ChangeWindow;
         }
 
         private void Window_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -28,6 +30,11 @@ namespace WebSocketChat.Views
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void ChangeWindow(object sender, ConnectionEventArgs e)
+        {
+
         }
     }
 }
