@@ -68,7 +68,7 @@
             Command="{Binding Host}"/>
 
         <TextBlock Text="{Binding Status}" 
-                   Margin="272,434,316,54"
+                   Margin="186,434,230,54"
                    Grid.Row="1"
                    FontSize="15"
                    TextAlignment="Center"

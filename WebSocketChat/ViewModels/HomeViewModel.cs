@@ -13,12 +13,14 @@ using System.Collections.ObjectModel;
 using WebSocketChat.Commands;
 using Microsoft.AspNetCore.SignalR.Client;
 using WebSocketChat.Events;
+using Newtonsoft.Json;
 
 namespace WebSocketChat.ViewModels
 {
     class HomeViewModel : ViewModelBase
     {
-        private bool _ishosting;
+        private bool _isHosting;
+        private bool _isConnecting = true;
         private string _name;
         private string _status;
         public EventHandler<ConnectionEventArgs> OnSuccessfulConnect;
@@ -47,22 +49,26 @@ namespace WebSocketChat.ViewModels
 
         private bool CanHostServer()
         {
-            return _name == null || _ishosting ? false : true;
+            return _name == null || _isHosting ? false : true;
         }
         private bool CanConnectToServer()
         {
-            return _name == null ? false : true;
+            return _name == null || _isConnecting ? false : true;
         }
 
         private async Task ConnectToServer()
         {
-              connection = new HubConnectionBuilder()
+            Status = LogStatus("Connecting...");
+           var result =  await SendUser(new UserModel(Name));
+            if (result)
+            {
+                connection = new HubConnectionBuilder()
                 .WithUrl("https://localhost:5001/chathub")
                 .Build();
-            CreateHandlers();
-            Status = LogStatus("Connecting...");
-            await Task.WhenAny(connection.StartAsync(), Task.Delay(2000));
-            if (connection.ConnectionId == null)
+                CreateHandlers();
+                await connection.StartAsync();
+            }
+            else
             {
                 Status = LogStatus("Could not connect to the server!");
                 await Task.Delay(1500);
@@ -74,8 +80,7 @@ namespace WebSocketChat.ViewModels
         {
             var server = GetServer();
             server.Start();
-            _ishosting = true;
-            
+            _isHosting = true;       
         }
 
         private Process GetServer()
@@ -99,8 +104,24 @@ namespace WebSocketChat.ViewModels
         {
             connection.On<DataModel>("Connected", (data) =>
             {
-
+                OnSuccessfulConnect?.Invoke(this, new ConnectionEventArgs { Data = data });
             });
+        }
+
+        private async Task<bool> SendUser(UserModel user)
+        {
+            _isConnecting = true;
+            var httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri("https://localhost:5001");
+            var jsonData = JsonConvert.SerializeObject(user);
+            var result = await httpClient.PostAsync("/api/chat/PostUser", 
+                new StringContent(jsonData, Encoding.UTF8, "application/json"));
+            if (result.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            return false;
+
         }
     }
 }
