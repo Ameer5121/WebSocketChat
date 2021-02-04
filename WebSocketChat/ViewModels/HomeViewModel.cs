@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WebSocketChat.Models;
 using System.Windows.Input;
+using System.Collections.ObjectModel;
 using WebSocketChat.Commands;
 using Microsoft.AspNetCore.SignalR.Client;
 
@@ -18,6 +19,7 @@ namespace WebSocketChat.ViewModels
         private bool _ishosting;
         private string _name;
         private string _status;
+
 
         public string Name
         {
@@ -64,7 +66,7 @@ namespace WebSocketChat.ViewModels
             }
             else
             {
-
+                //connection.On<>
             }
         }
 

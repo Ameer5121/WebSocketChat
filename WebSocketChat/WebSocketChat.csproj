@@ -216,6 +216,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Events\ConnectionEventArgs.cs" />
+    <Compile Include="Models\MessageModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\App.xaml.cs">
