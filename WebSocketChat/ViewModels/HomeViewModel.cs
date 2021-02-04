@@ -63,7 +63,7 @@ namespace WebSocketChat.ViewModels
             if (result)
             {
                 connection = new HubConnectionBuilder()
-                .WithUrl("https://localhost:44358/chathub")
+                .WithUrl("https://localhost:5001/chathub")
                 .Build();
                 CreateHandlers();
                 await connection.StartAsync();
@@ -112,7 +112,7 @@ namespace WebSocketChat.ViewModels
         {
             _isConnecting = true;
             var httpClient = new HttpClient();
-            httpClient.BaseAddress = new Uri("https://localhost:44358");
+            httpClient.BaseAddress = new Uri("https://localhost:5001");
             var jsonData = JsonConvert.SerializeObject(user);
             var result = await httpClient.PostAsync("/api/chat/PostUser", 
                 new StringContent(jsonData, Encoding.UTF8, "application/json"));

@@ -14,10 +14,8 @@ namespace ChattingHub.Controllers
     public class ChatController : ControllerBase
     {
         private ILogger<ChatController> _logger;
-        private ChatHub _chathub;
         public ChatController(ILogger<ChatController> logger)
         {
-            _chathub = new ChatHub();
             _logger = logger;
         }
 
@@ -27,7 +25,7 @@ namespace ChattingHub.Controllers
         {
             if(user.Name != null)
             {
-                DataModel.Users.Add(user);
+                ChatHub.UsersAndMessages.Users.Add(user);
             }
         }
     }

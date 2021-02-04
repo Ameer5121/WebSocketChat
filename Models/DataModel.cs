@@ -6,10 +6,15 @@ using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 namespace Models
 {
-    public static class DataModel
+    public class DataModel
     {
-        public static ObservableCollection<MessageModel> Messages { get; set; } = new ObservableCollection<MessageModel>();
-        public static ObservableCollection<UserModel> Users { get; set; } = new ObservableCollection<UserModel>();
+        public ObservableCollection<MessageModel> Messages { get; set; } 
+        public ObservableCollection<UserModel> Users { get; set; }
 
+        public DataModel()
+        {
+            Messages = new ObservableCollection<MessageModel>();
+            Users = new ObservableCollection<UserModel>();
+        }
     }
 }

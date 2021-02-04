@@ -3,18 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebSocketChat.Models;
+using Models;
 
 namespace ChattingHub.Hubs
 {
     public class ChatHub : Hub
     {
-        public DataModel UsersAndMessages;
-
-        public ChatHub()
-        {
-            UsersAndMessages = new DataModel();
-        }
+        public static DataModel UsersAndMessages = new DataModel();
         public void SendMessages()
         {
             // TODO;
