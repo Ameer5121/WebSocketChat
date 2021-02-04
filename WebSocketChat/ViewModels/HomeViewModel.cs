@@ -20,7 +20,7 @@ namespace WebSocketChat.ViewModels
     class HomeViewModel : ViewModelBase
     {
         private bool _isHosting;
-        private bool _isConnecting = true;
+        private bool _isConnecting = false;
         private string _name;
         private string _status;
         public EventHandler<ConnectionEventArgs> OnSuccessfulConnect;
@@ -59,7 +59,7 @@ namespace WebSocketChat.ViewModels
         private async Task ConnectToServer()
         {
             Status = LogStatus("Connecting...");
-           var result =  await SendUser(new UserModel(Name));
+            var result = await SendUser(new UserModel { Name = this.Name });
             if (result)
             {
                 connection = new HubConnectionBuilder()
@@ -112,7 +112,7 @@ namespace WebSocketChat.ViewModels
         {
             _isConnecting = true;
             var httpClient = new HttpClient();
-            httpClient.BaseAddress = new Uri("https://localhost:5001");
+            httpClient.BaseAddress = new Uri("https://localhost:44358");
             var jsonData = JsonConvert.SerializeObject(user);
             var result = await httpClient.PostAsync("/api/chat/PostUser", 
                 new StringContent(jsonData, Encoding.UTF8, "application/json"));
