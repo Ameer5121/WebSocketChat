@@ -58,7 +58,7 @@ namespace WebSocketChat.ViewModels
 
         private async Task ConnectToServer()
         {
-            Status = LogStatus("Connecting...");
+            LogStatus("Connecting...");
             var result = await SendUser(new UserModel { Name = this.Name });
             if (result)
             {
@@ -70,9 +70,7 @@ namespace WebSocketChat.ViewModels
             }
             else
             {
-                Status = LogStatus("Could not connect to the server!");
-                await Task.Delay(1500);
-                Status = default;
+                 LogStatus("Could not connect to the server!");
                 _isConnecting = false;
             }
         }
@@ -96,9 +94,11 @@ namespace WebSocketChat.ViewModels
             return process;
         }
 
-        private string LogStatus(string message)
+        private async Task LogStatus(string message)
         {
-           return Status = message;
+            Status = message;
+            await Task.Delay(1500);
+            Status = default;
         }
 
         private void CreateHandlers()
