@@ -73,6 +73,7 @@ namespace WebSocketChat.ViewModels
                 Status = LogStatus("Could not connect to the server!");
                 await Task.Delay(1500);
                 Status = default;
+                _isConnecting = false;
             }
         }
 
@@ -112,6 +113,7 @@ namespace WebSocketChat.ViewModels
         {
             _isConnecting = true;
             var httpClient = new HttpClient();
+            httpClient.Timeout = TimeSpan.FromSeconds(2);
             httpClient.BaseAddress = new Uri("https://localhost:5001");
             var jsonData = JsonConvert.SerializeObject(user);
             var result = await httpClient.PostAsync("/api/chat/PostUser", 
