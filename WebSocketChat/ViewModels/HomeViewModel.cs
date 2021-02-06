@@ -49,7 +49,7 @@ namespace WebSocketChat.ViewModels
 
         private bool CanHostServer()
         {
-            return _name == null || _isHosting ? false : true;
+            return _name == null || _isHosting || _isConnecting ? false : true;
         }
         private bool CanConnectToServer()
         {
@@ -93,14 +93,6 @@ namespace WebSocketChat.ViewModels
             process.StartInfo = processInfo;
             return process;
         }
-
-        private async Task LogStatus(string message)
-        {
-            Status = message;
-            await Task.Delay(1500);
-            Status = default;
-        }
-
         private void CreateHandlers()
         {
             connection.On<DataModel>("Connected", (data) =>
@@ -113,16 +105,31 @@ namespace WebSocketChat.ViewModels
         {
             _isConnecting = true;
             var httpClient = new HttpClient();
-            httpClient.Timeout = TimeSpan.FromSeconds(2);
             httpClient.BaseAddress = new Uri("https://localhost:5001");
             var jsonData = JsonConvert.SerializeObject(user);
-            var result = await httpClient.PostAsync("/api/chat/PostUser", 
-                new StringContent(jsonData, Encoding.UTF8, "application/json"));
-            if (result.IsSuccessStatusCode)
+
+            Task<HttpResponseMessage> postRequestTask = httpClient.PostAsync("/api/chat/PostUser",
+                    new StringContent(jsonData, Encoding.UTF8, "application/json"));
+
+            var completedTask = await Task.WhenAny(postRequestTask, Task.Delay(5000));
+
+            if (completedTask != postRequestTask)
+            {
+                return false;
+            }
+            else if (!postRequestTask.IsFaulted && postRequestTask.Result.IsSuccessStatusCode)
             {
                 return true;
             }
             return false;
         }
+
+        private async Task LogStatus(string message)
+        {
+            Status = message;
+            await Task.Delay(1500);
+            Status = default;
+        }
+
     }
 }
