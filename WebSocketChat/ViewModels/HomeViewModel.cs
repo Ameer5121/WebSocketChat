@@ -84,6 +84,8 @@ namespace WebSocketChat.ViewModels
 
         private Process GetServer()
         {
+            List<UserModel> person = new List<UserModel>();
+            person.Where((x) => x.Name == "David");
             Process process = new Process();
             ProcessStartInfo processInfo = new ProcessStartInfo();
             process.StartInfo = processInfo;
@@ -127,7 +129,7 @@ namespace WebSocketChat.ViewModels
         private async Task LogStatus(string message)
         {
             Status = message;
-            await Task.Delay(1500);
+            await Task.Delay(2000);
             Status = default;
         }
 
