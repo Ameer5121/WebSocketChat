@@ -29,12 +29,7 @@ namespace WebSocketChat.ViewModels
         public string Name
         {
             get => _name;
-            set
-            {
-                if (string.IsNullOrEmpty(value))
-                    return;
-                _name = value;
-            }
+            set => _name = value;
         }
 
         public string Status
@@ -49,11 +44,11 @@ namespace WebSocketChat.ViewModels
 
         private bool CanHostServer()
         {
-            return _name == null || _isHosting || _isConnecting ? false : true;
+            return string.IsNullOrEmpty(_name) || _isHosting || _isConnecting ? false : true;
         }
         private bool CanConnectToServer()
         {
-            return _name == null || _isConnecting ? false : true;
+            return string.IsNullOrEmpty(_name) || _isConnecting ? false : true;
         }
 
         private async Task ConnectToServer()

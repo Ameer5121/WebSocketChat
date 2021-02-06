@@ -13,7 +13,7 @@
         BorderBrush="Transparent" 
         ResizeMode="NoResize" 
         MouseDown="Window_MouseDown"
-        Background="#FF575757">
+        Background="#FF3C3C3C">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="13*"/>
@@ -27,15 +27,17 @@
             </Button>
         </Border>
 
+        <Border Background="#FF2C2B2B" Margin="0,488,0,0" Grid.Row="1"></Border>
+
         <TextBlock Text="WebSocket Chat" 
-                   Margin="265,10,304,505"
+                   Margin="269,10,300,505"
                    Grid.Row="1"
                    TextAlignment="Center"
                    FontSize="15"
                    Foreground="White"></TextBlock>
 
         <!--Name-->
-        <TextBlock Margin="284,99,328,411" 
+        <TextBlock Margin="290,99,322,411" 
                    Grid.Row="1" 
                    Text="Name:" 
                    TextAlignment="Center"
@@ -44,13 +46,13 @@
 
         <TextBox HorizontalAlignment="Right" 
                  Width="184" 
-                 Margin="0,136,271,352" 
+                 Margin="0,136,265,352" 
                  Grid.Row="1"
                  FontSize="20"
                  Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"></TextBox>
 
         <!--Connect-->
-        <Button Margin="227,220,271,228" 
+        <Button Margin="233,220,265,228" 
                 Grid.Row="1"
                 Style="{StaticResource SubmitButton}"
                 Content="Connect" 
@@ -59,7 +61,7 @@
                 Command="{Binding Connect}"></Button>
 
         <!--Host-->
-        <Button Margin="227,337,271,111" 
+        <Button Margin="233,337,265,111" 
             Grid.Row="1"
             Style="{StaticResource SubmitButton}"
             Content="Host" 
