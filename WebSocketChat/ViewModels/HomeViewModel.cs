@@ -54,8 +54,8 @@ namespace WebSocketChat.ViewModels
         private async Task ConnectToServer()
         {
             LogStatus("Connecting...");
-            var result = await SendUser(new UserModel { Name = this.Name });
-            if (result)
+            var isSuccessful = await SendUser(new UserModel { Name = this.Name });
+            if (isSuccessful)
             {
                 connection = new HubConnectionBuilder()
                 .WithUrl("https://localhost:5001/chathub")
