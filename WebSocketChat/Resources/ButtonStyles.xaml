@@ -35,9 +35,9 @@
         </Style.Triggers>
     </Style>
 
-    <!--Button Style-->
+    <!--Submit Button-->
     <Style TargetType="Button" x:Key="SubmitButton">
-        <Setter Property="Background" Value="DimGray"></Setter>
+        <Setter Property="Background" Value="#FF5B5959"></Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -46,7 +46,7 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#FF616060"></Setter>
+                            <Setter Property="Background" Value="DimGray"></Setter>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
