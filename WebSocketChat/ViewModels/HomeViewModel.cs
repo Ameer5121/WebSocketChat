@@ -72,9 +72,14 @@ namespace WebSocketChat.ViewModels
 
         private void HostServer()
         {
+            if (IsServerProcessRunning())
+            {
+                LogStatus("A server process is already running!");
+                return;
+            }
             var server = GetServer();
             server.Start();
-            _isHosting = true;       
+            _isHosting = true;
         }
 
         private Process GetServer()
@@ -87,6 +92,16 @@ namespace WebSocketChat.ViewModels
             processInfo.FileName = files[0];
             process.StartInfo = processInfo;
             return process;
+        }
+
+        private bool IsServerProcessRunning()
+        {
+            var serverProcess = Process.GetProcessesByName("ChattingHub");
+            if(serverProcess.Count() > 0)
+            {
+                return true;
+            }
+            return false;
         }
         private void CreateHandlers()
         {
