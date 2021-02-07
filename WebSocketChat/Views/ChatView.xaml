@@ -6,13 +6,19 @@
         xmlns:local="clr-namespace:WebSocketChat.Views"
         mc:Ignorable="d"
         Title="ChatView" 
-        Height="553.5" 
-        Width="608" WindowStyle="None">
-    <Grid Margin="0,0,0,500">
+        Height="719.5" 
+        Width="798" 
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen" 
+        MouseDown="Window_MouseDown"
+        ResizeMode="NoResize"
+        Background="#FF3C3C3C">
+
+    <Grid Margin="0,0,0,2">
         <!--Black Border & Exit Button-->
-        <Border Background="#FF2C2B2B" Grid.Row="0">
-            <Button Margin="555,0,0,0" BorderBrush="Transparent" Style="{StaticResource ExitButton}" Click="Exit_Click">
-                <Image Source="/Resources/Exit.png" Height="39" Width="37"></Image>
+        <Border Background="#FF2C2B2B" Grid.Row="0" Margin="0,0,0,658">
+            <Button Margin="731,0,0,0" BorderBrush="Transparent" Style="{StaticResource ExitButton}" Click="Exit_Click">
+                <Image Source="/Resources/Exit.png" Height="44" Width="49"></Image>
             </Button>
         </Border>
     </Grid>

@@ -79,8 +79,6 @@ namespace WebSocketChat.ViewModels
 
         private Process GetServer()
         {
-            List<UserModel> person = new List<UserModel>();
-            person.Where((x) => x.Name == "David");
             Process process = new Process();
             ProcessStartInfo processInfo = new ProcessStartInfo();
             process.StartInfo = processInfo;
