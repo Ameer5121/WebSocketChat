@@ -220,6 +220,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Events\ConnectionEventArgs.cs" />
+    <Compile Include="ViewModels\ChatViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -227,6 +228,9 @@
     </Compile>
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="Views\ChatView.xaml.cs">
+      <DependentUpon>ChatView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
@@ -277,6 +281,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\TextBoxStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ChatView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
