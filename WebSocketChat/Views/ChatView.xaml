@@ -5,8 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WebSocketChat.Views"
         mc:Ignorable="d"
-        Title="ChatView" Height="450" Width="800">
-    <Grid>
-        
+        Title="ChatView" 
+        Height="553.5" 
+        Width="608" WindowStyle="None">
+    <Grid Margin="0,0,0,500">
+        <!--Black Border & Exit Button-->
+        <Border Background="#FF2C2B2B" Grid.Row="0">
+            <Button Margin="555,0,0,0" BorderBrush="Transparent" Style="{StaticResource ExitButton}" Click="Exit_Click">
+                <Image Source="/Resources/Exit.png" Height="39" Width="37"></Image>
+            </Button>
+        </Border>
     </Grid>
 </Window>

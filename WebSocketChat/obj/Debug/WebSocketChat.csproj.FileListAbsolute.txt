@@ -20,3 +20,5 @@ D:\Projects\Gits\WebSocketChat\WebSocketChat\WebSocketChat\obj\Debug\WebSocketCh
 D:\Projects\Gits\WebSocketChat\WebSocketChat\WebSocketChat\obj\Debug\WebSocketChat.exe
 D:\Projects\Gits\WebSocketChat\WebSocketChat\WebSocketChat\obj\Debug\WebSocketChat.pdb
 D:\Projects\Gits\WebSocketChat\WebSocketChat\WebSocketChat\obj\Debug\WebSocketChat.csprojAssemblyReference.cache
+D:\Projects\Gits\WebSocketChat\WebSocketChat\WebSocketChat\obj\Debug\Views\ChatView.g.cs
+D:\Projects\Gits\WebSocketChat\WebSocketChat\WebSocketChat\obj\Debug\Views\ChatView.baml
