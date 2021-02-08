@@ -10,7 +10,6 @@ D:\Projects\Gits\WebSocketChat\WebSocketChat\WebSocketChat\obj\Debug\WebSocketCh
 D:\Projects\Gits\WebSocketChat\WebSocketChat\WebSocketChat\obj\Debug\WebSocketChat_MarkupCompile.lref
 D:\Projects\Gits\WebSocketChat\WebSocketChat\WebSocketChat\obj\Debug\Views\App.baml
 D:\Projects\Gits\WebSocketChat\WebSocketChat\WebSocketChat\obj\Debug\Resources\ButtonStyles.baml
-D:\Projects\Gits\WebSocketChat\WebSocketChat\WebSocketChat\obj\Debug\Resources\TextBoxStyles.baml
 D:\Projects\Gits\WebSocketChat\WebSocketChat\WebSocketChat\obj\Debug\Views\HomeView.baml
 D:\Projects\Gits\WebSocketChat\WebSocketChat\WebSocketChat\obj\Debug\WebSocketChat.g.resources
 D:\Projects\Gits\WebSocketChat\WebSocketChat\WebSocketChat\obj\Debug\WebSocketChat.Properties.Resources.resources

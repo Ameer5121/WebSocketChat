@@ -1,4 +1,5 @@
 ﻿<Window x:Class="WebSocketChat.Views.HomeView"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -37,7 +38,7 @@
                    Foreground="White"></TextBlock>
 
         <!--Name-->
-        <TextBlock Margin="290,99,322,411" 
+        <TextBlock Margin="291,118,321,392" 
                    Grid.Row="1" 
                    Text="Name:" 
                    TextAlignment="Center"
@@ -46,31 +47,42 @@
 
         <TextBox HorizontalAlignment="Right" 
                  Width="184" 
-                 Margin="0,136,265,352" 
+                 Margin="0,153,265,335" 
                  Grid.Row="1"
                  FontSize="20"
-                 Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Style="{DynamicResource MaterialDesignFloatingHintTextBox}" TextAlignment="Center"></TextBox>
+                 BorderBrush="White"
+                 Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" 
+                 Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                 TextAlignment="Center"
+                 materialDesign:TextFieldAssist.UnderlineBrush="#FF433F3F"
+                 CaretBrush="White"
+                 Foreground="AliceBlue"></TextBox>
 
         <!--Connect-->
-        <Button Margin="233,220,265,228" 
+        <Button Margin="233,240,265,253" 
                 Grid.Row="1"
-                Style="{StaticResource SubmitButton}"
+                Style="{StaticResource MaterialDesignRaisedDarkButton}"
                 Content="Connect" 
                 FontSize="25"
+                Background="#FF433F3F"
                 Foreground="White"
-                Command="{Binding Connect}"></Button>
+                BorderBrush="#FF2C2B2B"
+                Command="{Binding Connect}" Height="Auto"></Button>
 
         <!--Host-->
-        <Button Margin="233,337,265,111" 
+        <Button Margin="233,318,265,174" 
             Grid.Row="1"
-            Style="{StaticResource SubmitButton}"
+            Style="{StaticResource MaterialDesignRaisedDarkButton}"
             Content="Host" 
             FontSize="25"
+            Command="{Binding Host}"
+            Height="Auto"
             Foreground="White"
-            Command="{Binding Host}"/>
+            Background="#FF433F3F"
+            BorderBrush="#FF2C2B2B"/>
 
         <TextBlock Text="{Binding Status}" 
-                   Margin="186,434,230,54"
+                   Margin="198,434,230,54"
                    Grid.Row="1"
                    FontSize="15"
                    TextAlignment="Center"
