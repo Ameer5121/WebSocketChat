@@ -15,11 +15,25 @@
         Background="#FF3C3C3C">
 
     <Grid Margin="0,0,0,2">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="59"/>
+            <RowDefinition Height="581"/>
+            <RowDefinition Height="78"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="121*"/>
+            <ColumnDefinition Width="278*"/>
+        </Grid.ColumnDefinitions>
         <!--Black Border & Exit Button-->
-        <Border Background="#FF2C2B2B" Grid.Row="0" Margin="0,0,0,658">
+        <Border Background="#FF2C2B2B" Grid.Row="0" Margin="0,0,0,580" Grid.ColumnSpan="2" Grid.RowSpan="2">
             <Button Margin="731,0,0,0" BorderBrush="Transparent" Style="{StaticResource ExitButton}" Click="Exit_Click">
                 <Image Source="/Resources/Exit.png" Height="44" Width="49"></Image>
             </Button>
         </Border>
+
+
+        <Expander Grid.Row="1" IsExpanded="False" Background="#FF3C3C3C" FlowDirection="RightToLeft">
+            <Button Background="Gray"></Button>
+        </Expander>
     </Grid>
 </Window>

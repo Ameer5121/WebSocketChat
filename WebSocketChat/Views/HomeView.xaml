@@ -49,7 +49,7 @@
                  Margin="0,136,265,352" 
                  Grid.Row="1"
                  FontSize="20"
-                 Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                 Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Style="{DynamicResource MaterialDesignFloatingHintTextBox}" TextAlignment="Center"></TextBox>
 
         <!--Connect-->
         <Button Margin="233,220,265,228" 
