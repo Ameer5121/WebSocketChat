@@ -21,9 +21,9 @@
 
     <Grid Margin="0,0,0,2">
         <Grid.RowDefinitions>
-            <RowDefinition Height="60"/>
-            <RowDefinition Height="Auto" MinHeight="59"/>
-            <RowDefinition Height="602"/>
+            <RowDefinition Height="41"/>
+            <RowDefinition Height="Auto" MinHeight="48"/>
+            <RowDefinition Height="635"/>
             <RowDefinition Height="98"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -33,7 +33,7 @@
 
         <!--Black Border & Exit Button-->
         <Border Background="#FF2C2B2B" Grid.Row="0" Grid.ColumnSpan="2">
-            <Button Margin="1200,0,0,0" BorderBrush="Transparent" Style="{StaticResource ExitButton}" Click="Exit_Click">
+            <Button Margin="1227,0,0,0" BorderBrush="Transparent" Style="{StaticResource ExitButton}" Click="Exit_Click" Cursor="Hand">
                 <Image Source="/Resources/Exit.png" Height="44" Width="49"></Image>
             </Button>
         </Border>
@@ -47,9 +47,26 @@
                     </StackPanel>
                 </DockPanel>
             </Expander.Header>
-            <StackPanel>
-              
-            </StackPanel>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Expander Margin="0,20" Background="#FF4F4C4C" >
+                    <Expander.Header>
+                        <DockPanel FlowDirection="LeftToRight">
+                            <materialDesign:PackIcon Kind="People" Height="30" Width="33"></materialDesign:PackIcon>
+                            <TextBlock Text="Users" FontSize="20" Style="{StaticResource MaterialDesignHeadline4TextBlock}" Foreground="AliceBlue" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Left" Width="59"></TextBlock>
+                        </DockPanel>
+                    </Expander.Header>
+                    <ListView ItemsSource="{Binding Users}" FlowDirection="LeftToRight">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}"></TextBlock>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Expander>
+            </Grid>
         </Expander>
 
     </Grid>
