@@ -1,4 +1,5 @@
 ﻿<Window x:Class="WebSocketChat.Views.ChatView"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -30,5 +31,13 @@
                 <Image Source="/Resources/Exit.png" Height="44" Width="49"></Image>
             </Button>
         </Border>
+
+
+
+        <Expander Margin="0,0,0,533" Grid.Row="1">
+            <StackPanel Orientation="Vertical">
+                <Button></Button>
+            </StackPanel>
+        </Expander>
     </Grid>
 </Window>

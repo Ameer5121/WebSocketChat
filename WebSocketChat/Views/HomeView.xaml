@@ -11,10 +11,14 @@
         Width="654.5"
         WindowStartupLocation="CenterScreen" 
         WindowStyle="None"
-        BorderBrush="Transparent" 
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignDarkBackground}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="14"
+        FontFamily="{materialDesign:MaterialDesignFont}"
         ResizeMode="NoResize" 
         MouseDown="Window_MouseDown"
-        Background="#FF3C3C3C">
+>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="13*"/>
@@ -33,7 +37,7 @@
                    Grid.Row="1"
                    TextAlignment="Center"
                    FontSize="15"
-                   Foreground="White"></TextBlock>
+                   Foreground="White" Style="{StaticResource MaterialDesignHeadline3TextBlock}"></TextBlock>
 
         <!--Name-->
         <TextBlock Margin="280,133,311,338" 
@@ -57,7 +61,7 @@
                  Foreground="AliceBlue"></TextBox>
 
         <!--Connect-->
-        <Button Margin="233,240,265,190" 
+        <Button Margin="231,240,267,190" 
                 Grid.Row="1"
                 Style="{StaticResource MaterialDesignRaisedDarkButton}"
                 Content="Connect" 
@@ -68,7 +72,7 @@
                 Command="{Binding Connect}" Height="Auto"></Button>
 
         <!--Host-->
-        <Button Margin="233,337,265,95" 
+        <Button Margin="231,337,267,95" 
             Grid.Row="1"
             Style="{StaticResource MaterialDesignRaisedDarkButton}"
             Content="Host" 
@@ -80,7 +84,7 @@
             BorderBrush="#FF2C2B2B"/>
 
         <TextBlock Text="{Binding Status}" 
-                   Margin="198,406,218,38"
+                   Margin="198,426,218,38"
                    Grid.Row="1"
                    FontSize="15"
                    TextAlignment="Center"
