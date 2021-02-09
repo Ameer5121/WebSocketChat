@@ -7,8 +7,8 @@
         xmlns:local="clr-namespace:WebSocketChat.Views"
         mc:Ignorable="d"
         Title="HomeView" 
-        Height="592.5" 
-        Width="681.5"
+        Height="549" 
+        Width="654.5"
         WindowStartupLocation="CenterScreen" 
         WindowStyle="None"
         BorderBrush="Transparent" 
@@ -23,22 +23,20 @@
 
         <!--Black Border & Exit Button-->
         <Border Background="#FF2C2B2B" Grid.Row="0">
-            <Button Margin="631,0,0,0" BorderBrush="Transparent" Style="{StaticResource ExitButton}" Click="Exit_Click">
-                <Image Source="/Resources/Exit.png" Height="39" Width="42"></Image>
+            <Button Margin="600,0,0,0" BorderBrush="Transparent" Style="{StaticResource ExitButton}" Click="Exit_Click">
+                <Image Source="/Resources/Exit.png" Height="39" Width="54"></Image>
             </Button>
         </Border>
 
-        <Border Background="#FF2C2B2B" Margin="0,488,0,0" Grid.Row="1"></Border>
-
         <TextBlock Text="WebSocket Chat" 
-                   Margin="269,10,300,505"
+                   Margin="251,10,282,462"
                    Grid.Row="1"
                    TextAlignment="Center"
                    FontSize="15"
                    Foreground="White"></TextBlock>
 
         <!--Name-->
-        <TextBlock Margin="291,118,321,392" 
+        <TextBlock Margin="280,133,311,338" 
                    Grid.Row="1" 
                    Text="Name:" 
                    TextAlignment="Center"
@@ -47,19 +45,19 @@
 
         <TextBox HorizontalAlignment="Right" 
                  Width="184" 
-                 Margin="0,153,265,335" 
+                 Margin="0,168,250,283" 
                  Grid.Row="1"
                  FontSize="20"
                  BorderBrush="White"
                  Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" 
                  Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
                  TextAlignment="Center"
-                 materialDesign:TextFieldAssist.UnderlineBrush="#FF433F3F"
+                 materialDesign:TextFieldAssist.UnderlineBrush="DarkGreen"
                  CaretBrush="White"
                  Foreground="AliceBlue"></TextBox>
 
         <!--Connect-->
-        <Button Margin="233,240,265,253" 
+        <Button Margin="233,240,265,190" 
                 Grid.Row="1"
                 Style="{StaticResource MaterialDesignRaisedDarkButton}"
                 Content="Connect" 
@@ -70,7 +68,7 @@
                 Command="{Binding Connect}" Height="Auto"></Button>
 
         <!--Host-->
-        <Button Margin="233,318,265,174" 
+        <Button Margin="233,337,265,95" 
             Grid.Row="1"
             Style="{StaticResource MaterialDesignRaisedDarkButton}"
             Content="Host" 
@@ -82,7 +80,7 @@
             BorderBrush="#FF2C2B2B"/>
 
         <TextBlock Text="{Binding Status}" 
-                   Margin="198,434,230,54"
+                   Margin="198,406,218,38"
                    Grid.Row="1"
                    FontSize="15"
                    TextAlignment="Center"
