@@ -228,6 +228,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Events\ConnectionEventArgs.cs" />
+    <Compile Include="Services\INetworkService.cs" />
+    <Compile Include="Services\NetworkService.cs" />
     <Compile Include="ViewModels\ChatViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\App.xaml.cs">
