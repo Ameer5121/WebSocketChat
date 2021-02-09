@@ -7,8 +7,8 @@
         xmlns:local="clr-namespace:WebSocketChat.Views"
         mc:Ignorable="d"
         Title="ChatView" 
-        Height="719.5" 
-        Width="798" 
+        Height="821.5" 
+        Width="1281" 
         WindowStyle="None"
         WindowStartupLocation="CenterScreen" 
         MouseDown="Window_MouseDown"
@@ -21,24 +21,36 @@
 
     <Grid Margin="0,0,0,2">
         <Grid.RowDefinitions>
-            <RowDefinition Height="59"/>
-            <RowDefinition Height="57"/>
-            <RowDefinition Height="504"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="Auto" MinHeight="59"/>
+            <RowDefinition Height="602"/>
             <RowDefinition Height="98"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="121*"/>
-            <ColumnDefinition Width="278*"/>
+            <ColumnDefinition Width="86*"/>
+            <ColumnDefinition Width="341*"/>
         </Grid.ColumnDefinitions>
 
         <!--Black Border & Exit Button-->
-        <Border Background="#FF2C2B2B" Grid.Row="0" Margin="0,0,0,9" Grid.ColumnSpan="2">
-            <Button Margin="731,0,0,0" BorderBrush="Transparent" Style="{StaticResource ExitButton}" Click="Exit_Click">
+        <Border Background="#FF2C2B2B" Grid.Row="0" Grid.ColumnSpan="2">
+            <Button Margin="1200,0,0,0" BorderBrush="Transparent" Style="{StaticResource ExitButton}" Click="Exit_Click">
                 <Image Source="/Resources/Exit.png" Height="44" Width="49"></Image>
             </Button>
         </Border>
 
-
+        <Expander FlowDirection="RightToLeft" Grid.Column="0" Grid.Row="1" Background="#FF3A3838">
+            <Expander.Header>
+                <DockPanel FlowDirection="LeftToRight">
+                    <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Settings" Height="35" Width="45"></materialDesign:PackIcon>
+                        <TextBlock Text="Menu" Style="{StaticResource MaterialDesignBody1TextBlock}" Width="85" FontSize="25" TextAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                    </StackPanel>
+                </DockPanel>
+            </Expander.Header>
+            <StackPanel>
+              
+            </StackPanel>
+        </Expander>
 
     </Grid>
 </Window>

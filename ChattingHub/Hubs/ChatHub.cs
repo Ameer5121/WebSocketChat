@@ -35,5 +35,6 @@ namespace ChattingHub.Hubs
             Clients.Caller.SendAsync("Connected", _usersAndMessages);
             return base.OnConnectedAsync();
         }
+
     }
 }
