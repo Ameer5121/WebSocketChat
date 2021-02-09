@@ -112,6 +112,7 @@ namespace WebSocketChat.ViewModels
         {
             connection.On<DataModel>("Connected", (data) =>
             {
+                // Invoke the handler from the UI thread.
                 Application.Current.Dispatcher.Invoke(() =>
                 {
                     OnSuccessfulConnect?.Invoke(this, new ConnectionEventArgs { Data = data });

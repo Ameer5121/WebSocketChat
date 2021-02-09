@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using WebSocketChat.ViewModels;
 using Models;
 
 
@@ -13,7 +14,7 @@ namespace WebSocketChat.Views
         public ChatView(DataModel data)
         {
             InitializeComponent();
-            
+            DataContext = new ChatViewModel(data);
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e) => Application.Current.Shutdown();

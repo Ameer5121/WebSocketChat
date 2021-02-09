@@ -12,21 +12,27 @@
         WindowStyle="None"
         WindowStartupLocation="CenterScreen" 
         MouseDown="Window_MouseDown"
-        ResizeMode="NoResize"
-        Background="#FF3C3C3C">
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignDarkBackground}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="14"
+        FontFamily="{materialDesign:MaterialDesignFont}"
+        ResizeMode="NoResize">
 
     <Grid Margin="0,0,0,2">
         <Grid.RowDefinitions>
             <RowDefinition Height="59"/>
-            <RowDefinition Height="581"/>
-            <RowDefinition Height="78"/>
+            <RowDefinition Height="57"/>
+            <RowDefinition Height="504"/>
+            <RowDefinition Height="98"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="121*"/>
             <ColumnDefinition Width="278*"/>
         </Grid.ColumnDefinitions>
+
         <!--Black Border & Exit Button-->
-        <Border Background="#FF2C2B2B" Grid.Row="0" Margin="0,0,0,580" Grid.ColumnSpan="2" Grid.RowSpan="2">
+        <Border Background="#FF2C2B2B" Grid.Row="0" Margin="0,0,0,9" Grid.ColumnSpan="2">
             <Button Margin="731,0,0,0" BorderBrush="Transparent" Style="{StaticResource ExitButton}" Click="Exit_Click">
                 <Image Source="/Resources/Exit.png" Height="44" Width="49"></Image>
             </Button>
@@ -34,10 +40,5 @@
 
 
 
-        <Expander Margin="0,0,0,533" Grid.Row="1">
-            <StackPanel Orientation="Vertical">
-                <Button></Button>
-            </StackPanel>
-        </Expander>
     </Grid>
 </Window>
