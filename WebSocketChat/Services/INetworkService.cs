@@ -7,7 +7,7 @@ using Models;
 
 namespace WebSocketChat.Services
 {
-    interface INetworkService
+    public interface INetworkService
     {
         DataModel ReceiveData();
     }

@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
-using Models;
+using WebSocketChat.ViewModels;
 
 namespace WebSocketChat.Events
 {
     class ConnectionEventArgs : EventArgs
     {
-        public DataModel Data;
+        public ChatViewModel ChatViewModelContext;
     }
 }

@@ -11,10 +11,10 @@ namespace WebSocketChat.Views
     /// </summary>
     public partial class ChatView : Window
     {
-        public ChatView(DataModel data)
+        public ChatView(ChatViewModel context)
         {
             InitializeComponent();
-            DataContext = new ChatViewModel(data);
+            DataContext = context;
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e) => Application.Current.Shutdown();

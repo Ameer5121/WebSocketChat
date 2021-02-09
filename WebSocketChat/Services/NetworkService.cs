@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace WebSocketChat.Services
 {
-    class NetworkService : INetworkService
+    public class NetworkService : INetworkService
     {
         public DataModel ReceiveData()
         {
-           
+            return null;
         }
     }
 }

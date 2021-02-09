@@ -16,6 +16,7 @@ using System.Windows;
 using Microsoft.AspNetCore.SignalR.Client;
 using WebSocketChat.Events;
 using Newtonsoft.Json;
+using WebSocketChat.Services;
 
 namespace WebSocketChat.ViewModels
 {
@@ -115,7 +116,10 @@ namespace WebSocketChat.ViewModels
                 // Invoke the handler from the UI thread.
                 Application.Current.Dispatcher.Invoke(() =>
                 {
-                    OnSuccessfulConnect?.Invoke(this, new ConnectionEventArgs { Data = data });
+                    OnSuccessfulConnect?.Invoke(this, new ConnectionEventArgs
+                    {
+                        ChatViewModelContext = new ChatViewModel(data, connection, new NetworkService())
+                    });
                 });       
             });
         }

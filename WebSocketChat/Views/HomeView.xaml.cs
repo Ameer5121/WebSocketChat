@@ -34,7 +34,7 @@ namespace WebSocketChat.Views
 
         private void ChangeWindow(object sender, ConnectionEventArgs e)
         {
-            ChatView chatView = new ChatView(e.Data);
+            ChatView chatView = new ChatView(e.ChatViewModelContext);
             chatView.Show();
             this.Hide();
         }
