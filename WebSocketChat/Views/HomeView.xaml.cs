@@ -36,7 +36,7 @@ namespace WebSocketChat.Views
         {
             ChatView chatView = new ChatView(e.ChatViewModelContext);
             chatView.Show();
-            this.Hide();
+            this.Close();
         }
     }
 }

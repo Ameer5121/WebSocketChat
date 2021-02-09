@@ -24,10 +24,5 @@ namespace WebSocketChat.Views
             if (e.ButtonState == e.LeftButton)
                 this.DragMove();
         }
-
-        private void HeaderSite_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }
