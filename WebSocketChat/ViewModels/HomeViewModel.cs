@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using System.Windows.Threading;
 using System.IO;
 using System.Diagnostics;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ using Models;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
 using WebSocketChat.Commands;
+using System.Windows;
 using Microsoft.AspNetCore.SignalR.Client;
 using WebSocketChat.Events;
 using Newtonsoft.Json;
@@ -27,7 +29,7 @@ namespace WebSocketChat.ViewModels
         private HubConnection connection;
 
         public string Name
-        {
+        {           
             get => _name;
             set => _name = value;
         }
@@ -51,23 +53,26 @@ namespace WebSocketChat.ViewModels
             return string.IsNullOrEmpty(_name) || _isConnecting ? false : true;
         }
 
-        private async Task ConnectToServer()
+        private void ConnectToServer()
         {
-            LogStatus("Connecting...");
-            var isSuccessful = await SendUser(new UserModel { Name = this.Name });
-            if (isSuccessful)
+            Task.Run(async () =>
             {
-                connection = new HubConnectionBuilder()
-                .WithUrl("https://localhost:5001/chathub")
-                .Build();
-                CreateHandlers();
-                await connection.StartAsync();
-            }
-            else
-            {
-                 LogStatus("Could not connect to the server!");
-                _isConnecting = false;
-            }
+                LogStatus("Connecting...");
+                var isSuccessful = await SendUser(new UserModel { Name = this.Name });
+                if (isSuccessful)
+                {
+                    connection = new HubConnectionBuilder()
+                    .WithUrl("https://localhost:5001/chathub")
+                    .Build();
+                    CreateHandlers();
+                    await connection.StartAsync();
+                }
+                else
+                {
+                    LogStatus("Could not connect to the server!");
+                    _isConnecting = false;
+                }
+            });
         }
 
         private void HostServer()
@@ -107,7 +112,10 @@ namespace WebSocketChat.ViewModels
         {
             connection.On<DataModel>("Connected", (data) =>
             {
-                OnSuccessfulConnect?.Invoke(this, new ConnectionEventArgs { Data = data });
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    OnSuccessfulConnect?.Invoke(this, new ConnectionEventArgs { Data = data });
+                });       
             });
         }
 
