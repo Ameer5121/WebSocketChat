@@ -21,11 +21,11 @@ namespace ChattingHub.Hubs
             _usersAndMessages = new DataModel();
         }
 
-        public void AddData(UserModel data)
+        public void AddUserData(UserModel data)
         {
             _usersAndMessages.Users.Add(data);
         }
-        public void AddData(MessageModel data)
+        public void AddMessageData(MessageModel data)
         {
             _usersAndMessages.Messages.Add(data);
         }

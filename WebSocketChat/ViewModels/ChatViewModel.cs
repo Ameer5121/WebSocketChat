@@ -8,6 +8,7 @@ using WebSocketChat.ViewModels;
 using Models;
 using Microsoft.AspNetCore.SignalR.Client;
 using WebSocketChat.Services;
+using System.Net.Http;
 
 namespace WebSocketChat.ViewModels
 {
@@ -24,6 +25,7 @@ namespace WebSocketChat.ViewModels
             _messages = data.Messages;
             _connection = connection;
             _networkservice = networkservice;
+            SendHeartBeat();
         }
 
         public ObservableCollection<UserModel> Users
@@ -37,9 +39,20 @@ namespace WebSocketChat.ViewModels
             set => SetPropertyValue(ref _messages, value);
         }
 
-        private void SendHeartBeat()
+        private async Task SendHeartBeat()
         {
-
+            var httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri("https://localhost:5001");
+            var response = await httpClient.GetAsync("api/chat/GetHeartBeat"); // empty buffer
+            if (response.IsSuccessStatusCode)
+            {
+                await Task.Delay(5000);
+                SendHeartBeat();
+            }
+            else
+            {
+                OnDisconnect?.Invoke(this, EventArgs.Empty);
+            }
         }
     }
 }

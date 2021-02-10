@@ -27,8 +27,15 @@ namespace ChattingHub.Controllers
         {
             if(user.Name != null)
             {
-                _chathub.AddData(user);
+                _chathub.AddUserData(user);
             }
+        }
+
+        [HttpGet]
+        [Route("api/chat/GetHeartBeat")]
+        public string GetHeartBeat()
+        {
+            return "Alive";
         }
     }
 }
