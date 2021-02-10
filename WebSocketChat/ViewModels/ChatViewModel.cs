@@ -17,6 +17,7 @@ namespace WebSocketChat.ViewModels
         private ObservableCollection<MessageModel> _messages;
         private HubConnection _connection;
         private INetworkService _networkservice;
+        private event EventHandler OnDisconnect;
         public ChatViewModel(DataModel data, HubConnection connection, INetworkService networkservice)
         {
             _users = data.Users;
@@ -34,6 +35,11 @@ namespace WebSocketChat.ViewModels
         {
             get => _messages;
             set => SetPropertyValue(ref _messages, value);
+        }
+
+        private void SendHeartBeat()
+        {
+
         }
     }
 }
