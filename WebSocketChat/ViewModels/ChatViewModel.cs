@@ -18,7 +18,7 @@ namespace WebSocketChat.ViewModels
         private ObservableCollection<MessageModel> _messages;
         private HubConnection _connection;
         private INetworkService _networkservice;
-        private event EventHandler OnDisconnect;
+        public event EventHandler OnDisconnect;
         public ChatViewModel(DataModel data, HubConnection connection, INetworkService networkservice)
         {
             _users = data.Users;
@@ -43,8 +43,9 @@ namespace WebSocketChat.ViewModels
         {
             var httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri("https://localhost:5001");
-            var response = await httpClient.GetAsync("api/chat/GetHeartBeat"); // empty buffer
-            if (response.IsSuccessStatusCode)
+            Task<HttpResponseMessage> getHeartBeatTask = httpClient.GetAsync("api/chat/GetHeartBeat");
+            var completedTask = await Task.WhenAny(getHeartBeatTask, Task.Delay(5000));
+            if (completedTask == getHeartBeatTask)
             {
                 await Task.Delay(5000);
                 SendHeartBeat();

@@ -15,6 +15,7 @@ namespace WebSocketChat.Views
         {
             InitializeComponent();
             DataContext = context;
+            (DataContext as ChatViewModel).OnDisconnect += ChangeToHomeWindow;
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e) => Application.Current.Shutdown();
@@ -23,6 +24,13 @@ namespace WebSocketChat.Views
         {
             if (e.ButtonState == e.LeftButton)
                 this.DragMove();
+        }
+
+        private void ChangeToHomeWindow(object sender, EventArgs e)
+        {
+            HomeView home = new HomeView();
+            home.Show();
+            this.Close();
         }
     }
 }
