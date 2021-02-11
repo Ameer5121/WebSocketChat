@@ -138,7 +138,7 @@ namespace WebSocketChat.ViewModels
                 if (response.IsSuccessStatusCode)
                     return true;
 
-            }catch(HttpRequestException e)
+            }catch(HttpRequestException)
             {
                 return false;
             }

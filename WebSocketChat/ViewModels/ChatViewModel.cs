@@ -43,15 +43,16 @@ namespace WebSocketChat.ViewModels
         {
             while (true)
             {
-                await Task.Delay(1000);
+                await Task.Delay(2000);
                 var httpClient = new HttpClient();
                 httpClient.BaseAddress = new Uri("https://localhost:5001");
-                Task<HttpResponseMessage> getHeartBeatTask = httpClient.GetAsync("api/chat/GetHeartBeat");
-                var completedTask = await Task.WhenAny(getHeartBeatTask, Task.Delay(5000));
-                if (completedTask == getHeartBeatTask && completedTask.IsFaulted)
+                try
+                {
+                    var response = await httpClient.GetAsync("api/chat/GetHeartBeat");
+                }catch(HttpRequestException)
                 {
                     OnDisconnect?.Invoke(this, EventArgs.Empty);
-                }
+                }               
             }
         }
     }
