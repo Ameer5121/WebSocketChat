@@ -130,19 +130,17 @@ namespace WebSocketChat.ViewModels
             var httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri("https://localhost:5001");
             var jsonData = JsonConvert.SerializeObject(user);
-
-            Task<HttpResponseMessage> postRequestTask = httpClient.PostAsync("api/chat/PostUser",
+            try
+            {
+                var response = await httpClient.PostAsync("/api/chat/PostUser",
                     new StringContent(jsonData, Encoding.UTF8, "application/json"));
 
-            var completedTask = await Task.WhenAny(postRequestTask, Task.Delay(5000));
+                if (response.IsSuccessStatusCode)
+                    return true;
 
-            if (completedTask != postRequestTask)
+            }catch(HttpRequestException e)
             {
                 return false;
-            }
-            else if (!postRequestTask.IsFaulted && postRequestTask.Result.IsSuccessStatusCode)
-            {
-                return true;
             }
             return false;
         }

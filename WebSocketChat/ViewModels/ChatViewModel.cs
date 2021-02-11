@@ -43,7 +43,7 @@ namespace WebSocketChat.ViewModels
         {
             while (true)
             {
-                await Task.Delay(3000);
+                await Task.Delay(1000);
                 var httpClient = new HttpClient();
                 httpClient.BaseAddress = new Uri("https://localhost:5001");
                 Task<HttpResponseMessage> getHeartBeatTask = httpClient.GetAsync("api/chat/GetHeartBeat");
