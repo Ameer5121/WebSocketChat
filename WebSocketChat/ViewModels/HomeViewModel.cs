@@ -120,7 +120,8 @@ namespace WebSocketChat.ViewModels
                     {
                         ChatViewModelContext = new ChatViewModel(data, connection, new NetworkService())
                     });
-                });       
+                });
+                connection.Remove("Connected");
             });
         }
 
@@ -151,6 +152,5 @@ namespace WebSocketChat.ViewModels
             await Task.Delay(2000);
             Status = default;
         }
-
     }
 }
