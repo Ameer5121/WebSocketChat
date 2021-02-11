@@ -30,6 +30,7 @@ namespace WebSocketChat.Views
         {
             HomeView home = new HomeView();
             home.Show();
+            (DataContext as ChatViewModel).OnDisconnect -= ChangeToHomeWindow;
             this.Close();
         }
     }

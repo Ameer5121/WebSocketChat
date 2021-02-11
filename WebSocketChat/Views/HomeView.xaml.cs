@@ -36,6 +36,7 @@ namespace WebSocketChat.Views
         {
             ChatView chatView = new ChatView(e.ChatViewModelContext);
             chatView.Show();
+            (DataContext as HomeViewModel).OnSuccessfulConnect -= ChangeWindow;
             this.Close();
         }
     }

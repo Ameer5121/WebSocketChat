@@ -40,7 +40,7 @@
                    Foreground="White" Style="{StaticResource MaterialDesignHeadline3TextBlock}"></TextBlock>
 
         <!--Name-->
-        <TextBlock Margin="280,133,311,338" 
+        <TextBlock Margin="278,133,313,338" 
                    Grid.Row="1" 
                    Text="Name:" 
                    TextAlignment="Center"
@@ -49,7 +49,7 @@
 
         <TextBox HorizontalAlignment="Right" 
                  Width="184" 
-                 Margin="0,168,250,283" 
+                 Margin="0,168,251,283" 
                  Grid.Row="1"
                  FontSize="20"
                  BorderBrush="White"
@@ -61,7 +61,7 @@
                  Foreground="AliceBlue"></TextBox>
 
         <!--Connect-->
-        <Button Margin="231,240,267,190" 
+        <Button Margin="229,240,269,190" 
                 Grid.Row="1"
                 Style="{StaticResource MaterialDesignRaisedDarkButton}"
                 Content="Connect" 
@@ -72,7 +72,7 @@
                 Command="{Binding Connect}" Height="Auto"></Button>
 
         <!--Host-->
-        <Button Margin="231,337,267,95" 
+        <Button Margin="229,337,269,95" 
             Grid.Row="1"
             Style="{StaticResource MaterialDesignRaisedDarkButton}"
             Content="Host" 
@@ -84,7 +84,7 @@
             BorderBrush="#FF2C2B2B"/>
 
         <TextBlock Text="{Binding Status}" 
-                   Margin="191,426,225,38"
+                   Margin="187,426,229,38"
                    Grid.Row="1"
                    FontSize="15"
                    TextAlignment="Center"

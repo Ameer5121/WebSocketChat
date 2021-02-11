@@ -39,12 +39,12 @@
         </Border>
 
         <!--Main Expander-->
-        <Expander FlowDirection="RightToLeft" Grid.Column="0" Grid.Row="1" Background="#FF3A3838" IsExpanded="True">
+        <Expander FlowDirection="RightToLeft" Grid.Column="0" Grid.Row="1" Background="#FF3A3838" IsExpanded="False" Margin="0,0,0,75">
             <Expander.Header>
-                <DockPanel FlowDirection="LeftToRight">
+                <DockPanel FlowDirection="LeftToRight" Height="30">
                     <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="Settings" Height="35" Width="45"></materialDesign:PackIcon>
-                        <TextBlock Text="Menu" Style="{StaticResource MaterialDesignBody1TextBlock}" Width="85" FontSize="25" TextAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                        <materialDesign:PackIcon Kind="Settings" Height="34" Width="29"></materialDesign:PackIcon>
+                        <TextBlock Text="Menu" Style="{StaticResource MaterialDesignBody1TextBlock}" Width="74" FontSize="20" TextAlignment="Center" VerticalAlignment="Center" Margin="0,2,0,1"></TextBlock>
                     </StackPanel>
                 </DockPanel>
             </Expander.Header>
