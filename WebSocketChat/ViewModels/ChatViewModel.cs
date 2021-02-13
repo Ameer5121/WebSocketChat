@@ -49,10 +49,12 @@ namespace WebSocketChat.ViewModels
                 try
                 {
                     var response = await httpClient.GetAsync("api/chat/GetHeartBeat");
-                }catch(HttpRequestException)
+                }
+                catch (HttpRequestException)
                 {
                     OnDisconnect?.Invoke(this, EventArgs.Empty);
-                }               
+                    break;
+                }
             }
         }
     }
