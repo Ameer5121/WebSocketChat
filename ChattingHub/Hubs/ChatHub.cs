@@ -10,6 +10,7 @@ namespace ChattingHub.Hubs
     public class ChatHub : Hub
     {
         private static DataModel _usersAndMessages = new DataModel();
+        private static List<string> _connections = new List<string>();
         public void SendMessages()
         {
             // TODO;
@@ -27,6 +28,7 @@ namespace ChattingHub.Hubs
         public override Task OnConnectedAsync()
         {
             Clients.Caller.SendAsync("Connected", _usersAndMessages);
+            _connections.Add(Context.ConnectionId);
             return base.OnConnectedAsync();
         }
     }
