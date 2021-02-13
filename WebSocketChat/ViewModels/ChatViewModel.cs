@@ -25,6 +25,7 @@ namespace WebSocketChat.ViewModels
             _messages = data.Messages;
             _connection = connection;
             _networkservice = networkservice;
+            CreateHandlers();
             SendHeartBeat();
         }
 
@@ -56,6 +57,23 @@ namespace WebSocketChat.ViewModels
                     break;
                 }
             }
+        }
+
+        private void CreateHandlers()
+        {
+            _connection.On<DataModel>("ReceiveData", ReceiveData);
+        }
+
+        private void ReceiveData(DataModel data)
+        {
+            if (data.Users.Count != _users.Count)
+            {
+                Users = data.Users;
+            }else if(data.Messages.Count != _messages.Count)
+            {
+                Messages = data.Messages;
+            }
+                
         }
     }
 }
