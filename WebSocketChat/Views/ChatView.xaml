@@ -110,12 +110,16 @@
             Margin="24,728,18,223">
             <TextBox VerticalAlignment="Center"
                      FontSize="15" 
-                     Text="Yeah" 
+                     Text="{Binding CurrentMessage, UpdateSourceTrigger=PropertyChanged}" 
                      Height="32"
                      VerticalContentAlignment="Center" 
                      Margin="0,5,0,0"
                      CaretBrush="White"
-                     materialDesign:TextFieldAssist.UnderlineBrush="AliceBlue"/>
+                     materialDesign:TextFieldAssist.UnderlineBrush="AliceBlue">
+                <TextBox.InputBindings>
+                    <KeyBinding Command="{Binding Send}" Key="Enter" />
+                </TextBox.InputBindings>
+            </TextBox>
         </materialDesign:Card>
 
     </Grid>

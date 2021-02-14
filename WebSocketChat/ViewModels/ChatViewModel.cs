@@ -9,18 +9,24 @@ using Models;
 using Microsoft.AspNetCore.SignalR.Client;
 using WebSocketChat.Services;
 using System.Net.Http;
+using Newtonsoft.Json;
+using System.Windows.Input;
+using WebSocketChat.Commands;
 
 namespace WebSocketChat.ViewModels
 {
     public class ChatViewModel : ViewModelBase
     {
+        private UserModel _currentUser;
         private ObservableCollection<UserModel> _users;
         private ObservableCollection<MessageModel> _messages;
+        private string _currentMessage;
         private HubConnection _connection;
         private INetworkService _networkservice;
         public event EventHandler OnDisconnect;
-        public ChatViewModel(DataModel data, HubConnection connection, INetworkService networkservice)
+        public ChatViewModel(DataModel data, UserModel currentuser, HubConnection connection, INetworkService networkservice)
         {
+            _currentUser = currentuser;
             _users = data.Users;
             _messages = data.Messages;
             _connection = connection;
@@ -29,6 +35,7 @@ namespace WebSocketChat.ViewModels
             SendHeartBeat();
         }
 
+        public ICommand Send => new RelayCommand(SendMessage, CanSendMessage);
         public ObservableCollection<UserModel> Users
         {
             get => _users;
@@ -38,6 +45,38 @@ namespace WebSocketChat.ViewModels
         {
             get => _messages;
             set => SetPropertyValue(ref _messages, value);
+        }
+
+        public string CurrentMessage
+        {
+            get => _currentMessage;
+            set => SetPropertyValue(ref _currentMessage, value);
+        }
+
+        private bool CanSendMessage()
+        {
+            return string.IsNullOrEmpty(CurrentMessage) ? false : true;
+        }
+        private async Task SendMessage()
+        {
+            var httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri("https://localhost:5001");
+            var messagetoSend = new MessageModel(_currentMessage, _currentUser);
+            var jsonData = JsonConvert.SerializeObject(messagetoSend);
+            try
+            {
+                await httpClient.PostAsync("/api/chat/PostMessage",
+                    new StringContent(jsonData, Encoding.UTF8, "application/json"));
+
+                CurrentMessage = default;
+            }
+            catch (HttpRequestException)
+            {
+                Messages.Add(new MessageModel("Could not send message.", new UserModel
+                {
+                    Name = "System"
+                })); ;
+            }
         }
 
         private async Task SendHeartBeat()

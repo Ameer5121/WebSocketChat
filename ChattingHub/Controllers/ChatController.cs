@@ -31,6 +31,16 @@ namespace ChattingHub.Controllers
             }
         }
 
+        [HttpPost]
+        [Route("api/chat/PostMessage")]
+        public void AddMessage(MessageModel message)
+        {
+            if (message.Message != null && message.User.Name != null)
+            {
+                _chathub.AddMessageData(message);
+            }
+        }
+
         [HttpGet]
         [Route("api/chat/GetHeartBeat")]
         public string GetHeartBeat()

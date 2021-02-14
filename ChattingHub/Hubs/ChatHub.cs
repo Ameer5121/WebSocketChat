@@ -11,10 +11,9 @@ namespace ChattingHub.Hubs
     {
         private static DataModel _usersAndMessages = new DataModel();
         private static List<string> _connections = new List<string>();
-        public void SendMessages()
+        private void SendMessages()
         {
-            // TODO;
-           // Clients.All.SendAsync("Yes");
+            Clients.All.SendAsync("ReceiveData", _usersAndMessages);
         }
         public void AddUserData(UserModel data)
         {
@@ -23,6 +22,7 @@ namespace ChattingHub.Hubs
         public void AddMessageData(MessageModel data)
         {
             _usersAndMessages.Messages.Add(data);
+             SendMessages();
         }
 
         public override Task OnConnectedAsync()

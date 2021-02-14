@@ -28,6 +28,7 @@ namespace WebSocketChat.ViewModels
         private string _status;
         public EventHandler<ConnectionEventArgs> OnSuccessfulConnect;
         private HubConnection connection;
+        private UserModel _currentUser;
 
         public string Name
         {           
@@ -59,7 +60,7 @@ namespace WebSocketChat.ViewModels
             Task.Run(async () =>
             {
                 LogStatus("Connecting...");
-                var isSuccessful = await SendUser(new UserModel { Name = this.Name });
+                var isSuccessful = await SendUser(_currentUser = new UserModel { Name = this.Name });
                 if (isSuccessful)
                 {
                     connection = new HubConnectionBuilder()
@@ -118,7 +119,7 @@ namespace WebSocketChat.ViewModels
                 {
                     OnSuccessfulConnect?.Invoke(this, new ConnectionEventArgs
                     {
-                        ChatViewModelContext = new ChatViewModel(data, connection, new NetworkService())
+                        ChatViewModelContext = new ChatViewModel(data, _currentUser, connection, new NetworkService())
                     });
                 });
                 connection.Remove("Connected");
