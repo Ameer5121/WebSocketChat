@@ -83,11 +83,16 @@
         <materialDesign:Card Margin="10,54,0,209" Grid.Column="1" Grid.Row="1" Background="#FF3A3838" UniformCornerRadius="5">
             <ListView Grid.Column="1" 
                   Background="#FF3A3838" 
-                  Grid.Row="1" 
-                  Style="{StaticResource MaterialDesignCardsListBox}" 
+                  Grid.Row="1"                   
                   Grid.RowSpan="2"
                   ItemsSource="{Binding Messages}"  
-                  VerticalContentAlignment="Bottom" Margin="0,0,0,54">
+                  VerticalContentAlignment="Bottom" 
+                  Margin="0,0,0,54">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel VerticalAlignment="Bottom"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <TextBlock>
