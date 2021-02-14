@@ -74,8 +74,7 @@ namespace WebSocketChat.ViewModels
             }else if(data.Messages.Count != _messages.Count)
             {
                 Messages = data.Messages;
-            }
-                
+            }               
         }
     }
 }
