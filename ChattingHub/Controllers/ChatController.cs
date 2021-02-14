@@ -15,9 +15,11 @@ namespace ChattingHub.Controllers
     {
         private ILogger<ChatController> _logger;
         private ChatHub _chathub;
-        public ChatController(ILogger<ChatController> logger)
+        private IHubContext<ChatHub> _hubContext;
+        public ChatController(ILogger<ChatController> logger, IHubContext<ChatHub> hubContext)
         {
             _logger = logger;
+            _hubContext = hubContext;
             _chathub = new ChatHub();
         }
 
@@ -37,7 +39,7 @@ namespace ChattingHub.Controllers
         {
             if (message.Message != null && message.User.Name != null)
             {
-                _chathub.AddMessageData(message);
+                _chathub.AddMessageData(message, _hubContext);
             }
         }
 

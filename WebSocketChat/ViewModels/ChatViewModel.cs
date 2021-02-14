@@ -61,7 +61,7 @@ namespace WebSocketChat.ViewModels
         {
             var httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri("https://localhost:5001");
-            var messagetoSend = new MessageModel(_currentMessage, _currentUser);
+            var messagetoSend = new MessageModel { Message = CurrentMessage, User = _currentUser};
             var jsonData = JsonConvert.SerializeObject(messagetoSend);
             try
             {
@@ -72,10 +72,14 @@ namespace WebSocketChat.ViewModels
             }
             catch (HttpRequestException)
             {
-                Messages.Add(new MessageModel("Could not send message.", new UserModel
+                Messages.Add(new MessageModel
                 {
-                    Name = "System"
-                })); ;
+                    Message = "Could not send message.",
+                    User = new UserModel
+                    {
+                        Name = "System"
+                    }
+                });
             }
         }
 

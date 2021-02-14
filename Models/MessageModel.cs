@@ -6,15 +6,20 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public readonly struct MessageModel
+    public struct MessageModel
     {
-        public readonly string Message;
-        public readonly UserModel User;
+        private string _message;
+        private UserModel _user;
 
-        public MessageModel(string message, UserModel user)
-        {
-            Message = message;
-            User = user;
-        }
+       public string Message
+       {
+            get => _message;
+            set => _message = value;
+       }
+       public UserModel User
+       {
+            get => _user;
+            set => _user = value;
+       }
     }
 }

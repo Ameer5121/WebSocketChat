@@ -11,18 +11,18 @@ namespace ChattingHub.Hubs
     {
         private static DataModel _usersAndMessages = new DataModel();
         private static List<string> _connections = new List<string>();
-        private void SendMessages()
+        private void SendMessages(IHubContext<ChatHub> hub)
         {
-            Clients.All.SendAsync("ReceiveData", _usersAndMessages);
+            hub.Clients.All.SendAsync("ReceiveData", _usersAndMessages);
         }
         public void AddUserData(UserModel data)
         {
             _usersAndMessages.Users.Add(data);
         }
-        public void AddMessageData(MessageModel data)
+        public void AddMessageData(MessageModel data, IHubContext<ChatHub> hub)
         {
             _usersAndMessages.Messages.Add(data);
-             SendMessages();
+            SendMessages(hub);
         }
 
         public override Task OnConnectedAsync()
