@@ -11,11 +11,6 @@ namespace WebSocketChat.ViewModels
     public class ViewModelBase : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void OnPropertyChanged(string name)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
         protected bool SetPropertyValue<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
         {
             if (value == null ? field == null : value.Equals(field))

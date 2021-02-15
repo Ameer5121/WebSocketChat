@@ -12,6 +12,8 @@ using System.Net.Http;
 using Newtonsoft.Json;
 using System.Windows.Input;
 using WebSocketChat.Commands;
+using System.Windows;
+using System.Collections.Specialized;
 
 namespace WebSocketChat.ViewModels
 {
@@ -59,28 +61,28 @@ namespace WebSocketChat.ViewModels
         }
         private async Task SendMessage()
         {
-            var httpClient = new HttpClient();
-            httpClient.BaseAddress = new Uri("https://localhost:5001");
-            var messagetoSend = new MessageModel { Message = CurrentMessage, User = _currentUser};
-            var jsonData = JsonConvert.SerializeObject(messagetoSend);
-            try
-            {
-                await httpClient.PostAsync("/api/chat/PostMessage",
-                    new StringContent(jsonData, Encoding.UTF8, "application/json"));
+             var httpClient = new HttpClient();
+             httpClient.BaseAddress = new Uri("https://localhost:5001");
+             var messagetoSend = new MessageModel { Message = CurrentMessage, User = _currentUser};
+             var jsonData = JsonConvert.SerializeObject(messagetoSend);
+             try
+             {
+                 await httpClient.PostAsync("/api/chat/PostMessage",
+                     new StringContent(jsonData, Encoding.UTF8, "application/json"));
 
-                CurrentMessage = default;
-            }
-            catch (HttpRequestException)
-            {
-                Messages.Add(new MessageModel
-                {
-                    Message = "Could not send message.",
-                    User = new UserModel
-                    {
-                        Name = "System"
-                    }
-                });
-            }
+                 CurrentMessage = default;
+             }
+             catch (HttpRequestException)
+             {
+                 Messages.Add(new MessageModel
+                 {
+                     Message = "Could not send message.",
+                     User = new UserModel
+                     {
+                         Name = "System"
+                     }
+                 });
+             }
         }
 
         private async Task SendHeartBeat()
@@ -114,9 +116,15 @@ namespace WebSocketChat.ViewModels
             if (data.Users.Count != _users.Count)
             {
                 Users = data.Users;
-            }else if(data.Messages.Count != _messages.Count)
+            }
+            else if(data.Messages.Count != _messages.Count)
             {
-                Messages = data.Messages;
+               Application.Current.Dispatcher.Invoke(() =>
+               {
+                   Messages.Clear();
+                   foreach (var newData in data.Messages)
+                       Messages.Add(newData);
+               });
             }               
         }
     }

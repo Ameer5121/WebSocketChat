@@ -8,6 +8,7 @@ D:\Projects\Gits\WebSocketChat\WebSocketChat\WebSocketChat\obj\Debug\WebSocketCh
 D:\Projects\Gits\WebSocketChat\WebSocketChat\WebSocketChat\obj\Debug\Views\ChatView.g.cs
 D:\Projects\Gits\WebSocketChat\WebSocketChat\WebSocketChat\obj\Debug\Views\HomeView.g.cs
 D:\Projects\Gits\WebSocketChat\WebSocketChat\WebSocketChat\obj\Debug\Views\App.g.cs
+D:\Projects\Gits\WebSocketChat\WebSocketChat\WebSocketChat\obj\Debug\GeneratedInternalTypeHelper.g.cs
 D:\Projects\Gits\WebSocketChat\WebSocketChat\WebSocketChat\obj\Debug\WebSocketChat_MarkupCompile.cache
 D:\Projects\Gits\WebSocketChat\WebSocketChat\WebSocketChat\obj\Debug\WebSocketChat_MarkupCompile.lref
 D:\Projects\Gits\WebSocketChat\WebSocketChat\WebSocketChat\obj\Debug\Views\App.baml

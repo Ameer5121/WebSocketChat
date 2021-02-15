@@ -5,6 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WebSocketChat.Views"
+        xmlns:Scroll="clr-namespace:WebSocketChat.Helper"
         mc:Ignorable="d"
         Title="ChatView" 
         Height="821.5" 
@@ -85,14 +86,14 @@
                   Background="#FF3A3838" 
                   Grid.Row="1"                   
                   Grid.RowSpan="2"
-                  ItemsSource="{Binding Messages}"  
-                  VerticalContentAlignment="Bottom" 
-                  Margin="0,0,0,54">
-                <ListBox.ItemsPanel>
+                  ItemsSource="{Binding Messages}"                  
+                  Margin="0,0,0,54"
+                  Scroll:ScrollBehavior.ScrollOnNewItem="True">
+                <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel VerticalAlignment="Bottom"/>
                     </ItemsPanelTemplate>
-                </ListBox.ItemsPanel>
+                </ListView.ItemsPanel>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <TextBlock>
