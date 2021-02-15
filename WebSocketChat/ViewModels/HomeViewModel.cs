@@ -42,13 +42,19 @@ namespace WebSocketChat.ViewModels
             set => SetPropertyValue(ref _status, value);       
         }
 
+        public bool IsConnecting
+        {
+            get => _isConnecting;
+            set => SetPropertyValue(ref _isConnecting, value);
+        }
+
         public ICommand Host => new RelayCommand(HostServer, CanHostServer);
         public ICommand Connect => new RelayCommand(ConnectToServer, CanConnectToServer);
 
 
         private bool CanHostServer()
         {
-            return string.IsNullOrEmpty(_name) || _isHosting || _isConnecting ? false : true;
+            return string.IsNullOrEmpty(_name) || _isHosting || _isConnecting ? false : true; 
         }
         private bool CanConnectToServer()
         {
@@ -72,7 +78,7 @@ namespace WebSocketChat.ViewModels
                 else
                 {
                     LogStatus("Could not connect to the server!");
-                    _isConnecting = false;
+                    IsConnecting = false;
                 }
             });
         }
@@ -128,7 +134,7 @@ namespace WebSocketChat.ViewModels
 
         private async Task<bool> SendUser(UserModel user)
         {
-            _isConnecting = true;
+            IsConnecting = true;
             var httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri("https://localhost:5001");
             var jsonData = JsonConvert.SerializeObject(user);

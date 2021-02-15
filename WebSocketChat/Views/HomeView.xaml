@@ -33,14 +33,14 @@
         </Border>
 
         <TextBlock Text="WebSocket Chat" 
-                   Margin="251,10,282,462"
+                   Margin="253,10,280,462"
                    Grid.Row="1"
                    TextAlignment="Center"
                    FontSize="15"
                    Foreground="White" Style="{StaticResource MaterialDesignHeadline3TextBlock}"></TextBlock>
 
         <!--Name-->
-        <TextBlock Margin="278,133,313,338" 
+        <TextBlock Margin="279,133,312,338" 
                    Grid.Row="1" 
                    Text="Name:" 
                    TextAlignment="Center"
@@ -49,14 +49,16 @@
 
         <TextBox HorizontalAlignment="Right" 
                  Width="184" 
-                 Margin="0,168,251,283" 
+                 Margin="0,168,250,283" 
                  Grid.Row="1"
                  FontSize="20"
                  BorderBrush="White"
                  Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" 
                  Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
                  TextAlignment="Center"
-                 materialDesign:TextFieldAssist.UnderlineBrush="DarkGreen"
+                 HorizontalContentAlignment="Center"
+                 VerticalContentAlignment="Center"
+                 materialDesign:TextFieldAssist.UnderlineBrush="DimGray"
                  CaretBrush="White"
                  Foreground="AliceBlue"></TextBox>
 
@@ -84,10 +86,33 @@
             BorderBrush="#FF2C2B2B"/>
 
         <TextBlock Text="{Binding Status}" 
-                   Margin="187,426,229,38"
+                   Margin="187,423,229,49"
                    Grid.Row="1"
                    FontSize="15"
                    TextAlignment="Center"
                    Foreground="White"></TextBlock>
+
+        <ProgressBar
+         Value="0"
+         IsIndeterminate="True" 
+            Margin="288,454,335,22" 
+            Grid.Row="1"
+            Height="Auto"
+            Width="Auto"
+            Foreground="Silver">
+            <ProgressBar.Style>
+                <Style TargetType="ProgressBar" BasedOn="{StaticResource MaterialDesignCircularProgressBar}">
+                    <Setter Property="Visibility" Value="Visible"></Setter>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsConnecting}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"></Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsConnecting}" Value="False">
+                            <Setter Property="Visibility" Value="Collapsed"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ProgressBar.Style>
+        </ProgressBar>
     </Grid>
 </Window>

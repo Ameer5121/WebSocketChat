@@ -38,6 +38,7 @@
         </Border>
 
         <Grid Background="Transparent" Grid.Row="1" Margin="0,0,0,276">
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
@@ -46,32 +47,62 @@
                 <Expander.Header>
                     <DockPanel FlowDirection="LeftToRight" Height="30">
                         <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Settings" Height="34" Width="29"></materialDesign:PackIcon>
+                            <materialDesign:PackIcon Kind="Menu" Height="34" Width="29"></materialDesign:PackIcon>
                             <TextBlock Text="Menu" Style="{StaticResource MaterialDesignBody1TextBlock}" Width="74" FontSize="20" TextAlignment="Center" VerticalAlignment="Center" Margin="0,2,0,1"></TextBlock>
                         </StackPanel>
                     </DockPanel>
                 </Expander.Header>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <!--User Expander-->
-                    <Expander Margin="0,20" Background="#FF4F4C4C" IsExpanded="True">
-                        <Expander.Header>
-                            <DockPanel FlowDirection="LeftToRight">
-                                <materialDesign:PackIcon Kind="People" Height="30" Width="33"></materialDesign:PackIcon>
-                                <TextBlock Text="Users" FontSize="20" Style="{StaticResource MaterialDesignHeadline4TextBlock}" Foreground="AliceBlue" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Left" Width="59"></TextBlock>
-                            </DockPanel>
-                        </Expander.Header>
-                        <ListView ItemsSource="{Binding Users}" FlowDirection="LeftToRight">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Name}"></TextBlock>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                    </Expander>
-                </Grid>
+
+                <StackPanel>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <!--User Expander-->
+                        <Expander Margin="0,20" Background="#FF4F4C4C" IsExpanded="True">
+                            <Expander.Header>
+                                <DockPanel FlowDirection="LeftToRight">
+                                    <materialDesign:PackIcon Kind="People" Height="30" Width="33"></materialDesign:PackIcon>
+                                    <TextBlock Text="Users" FontSize="20" Style="{StaticResource MaterialDesignHeadline4TextBlock}" Foreground="AliceBlue" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Left" Width="59"></TextBlock>
+                                </DockPanel>
+                            </Expander.Header>
+                            <ListView ItemsSource="{Binding Users}" FlowDirection="LeftToRight">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}"></TextBlock>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </Expander>
+                    </Grid>
+
+                    <Grid Margin="0,-20">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <!--Options Expander-->
+                        <Expander Margin="0,20" Background="#FF4F4C4C" IsExpanded="False">
+                            <Expander.Header>
+                                <DockPanel FlowDirection="LeftToRight">
+                                    <materialDesign:PackIcon Kind="Settings" Height="30" Width="33"></materialDesign:PackIcon>
+                                    <TextBlock Text="Options" FontSize="20" Style="{StaticResource MaterialDesignHeadline4TextBlock}" Foreground="AliceBlue" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Left" Width="80"></TextBlock>
+                                </DockPanel>
+                            </Expander.Header>
+                            <Button Foreground="Red"
+                               Background="#FF433F3F"
+                               BorderBrush="#FF2C2B2B"
+                               Margin="98,10,0,10">
+                                <DockPanel FlowDirection="LeftToRight" Width="143" Height="28">
+                                    <materialDesign:PackIcon Kind="Logout" Width="52" Height="18" DockPanel.Dock="Left" Margin="0,5,0,0"></materialDesign:PackIcon>
+                                    <TextBlock Text="Log Out" 
+                                               Foreground="Red"
+                                               TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center" Height="18"></TextBlock>
+                                </DockPanel>
+                            </Button>
+                        </Expander>
+                    </Grid>
+
+                </StackPanel>
             </Expander>
         </Grid>
 
@@ -117,9 +148,8 @@
             <TextBox VerticalAlignment="Center"
                      FontSize="15" 
                      Text="{Binding CurrentMessage, UpdateSourceTrigger=PropertyChanged}" 
-                     Height="32"
-                     VerticalContentAlignment="Center" 
-                     Margin="0,5,0,0"
+                     Height="37"
+                     VerticalContentAlignment="Center"
                      CaretBrush="White"
                      materialDesign:TextFieldAssist.UnderlineBrush="AliceBlue">
                 <TextBox.InputBindings>
