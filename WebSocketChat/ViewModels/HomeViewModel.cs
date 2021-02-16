@@ -26,22 +26,15 @@ namespace WebSocketChat.ViewModels
         private bool _isConnecting = false;
         private string _name;
         private string _status;
-        public EventHandler<ConnectionEventArgs> OnSuccessfulConnect;
+        private ConnectionType _selectedconnectionType = ConnectionType.Internal;
         private HubConnection connection;
         private UserModel _currentUser;
-
-        public HomeViewModel()
-        {
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
-            GC.Collect();
-        }
+        public EventHandler<ConnectionEventArgs> OnSuccessfulConnect;
         public string Name
         {           
             get => _name;
             set => _name = value;
         }
-
         public string Status
         {
             get => _status;
@@ -54,6 +47,13 @@ namespace WebSocketChat.ViewModels
             set => SetPropertyValue(ref _isConnecting, value);
         }
 
+        public ConnectionType CurrentConnectionType
+        {
+            get => _selectedconnectionType;
+            set => _selectedconnectionType = value;
+        }
+
+        public Array ConnectionTypes { get; } = Enum.GetValues(typeof(ConnectionType));
         public ICommand Host => new RelayCommand(HostServer, CanHostServer);
         public ICommand Connect => new RelayCommand(ConnectToServer, CanConnectToServer);
 
@@ -164,6 +164,12 @@ namespace WebSocketChat.ViewModels
             Status = message;
             await Task.Delay(2000);
             Status = default;
+        }
+
+        public enum ConnectionType
+        {
+            Internal,
+            External,
         }
     }
 }

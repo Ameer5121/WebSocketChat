@@ -40,7 +40,7 @@
                    Foreground="White" Style="{StaticResource MaterialDesignHeadline3TextBlock}"></TextBlock>
 
         <!--Name-->
-        <TextBlock Margin="279,133,312,338" 
+        <TextBlock Margin="275,152,316,319" 
                    Grid.Row="1" 
                    Text="Name:" 
                    TextAlignment="Center"
@@ -49,7 +49,7 @@
 
         <TextBox HorizontalAlignment="Right" 
                  Width="184" 
-                 Margin="0,168,250,283" 
+                 Margin="0,185,250,283" 
                  Grid.Row="1"
                  FontSize="20"
                  BorderBrush="White"
@@ -115,7 +115,7 @@
             </ProgressBar.Style>
         </ProgressBar>
 
-        <Grid Background="Transparent" Margin="418,0,0,181" Grid.Row="1">
+        <Grid Background="Transparent" Margin="418,0,0,283" Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
@@ -154,5 +154,12 @@
                 </Grid>
             </Expander>
         </Grid>
+
+        <ComboBox Margin="395,282,161,191" Grid.Row="1" FlowDirection="LeftToRight" 
+                  materialDesign:HintAssist.Hint="Connection"
+                  ItemsSource="{Binding ConnectionTypes}"
+                  SelectedValue="{Binding CurrentConnectionType}"
+                  materialDesign:TextFieldAssist.UnderlineBrush="AliceBlue">
+        </ComboBox>
     </Grid>
 </Window>
