@@ -26,6 +26,7 @@ namespace WebSocketChat.ViewModels
         private bool _isConnecting = false;
         private string _name;
         private string _status;
+        private string _ipAddress;
         private ConnectionType _selectedconnectionType = ConnectionType.Internal;
         private HubConnection connection;
         private UserModel _currentUser;
@@ -52,6 +53,11 @@ namespace WebSocketChat.ViewModels
             get => _selectedconnectionType;
             set => _selectedconnectionType = value;
         }
+        public string IPAddress
+        {
+            get => _ipAddress;
+            set => SetPropertyValue(ref _ipAddress, value);
+        }
 
         public Array ConnectionTypes { get; } = Enum.GetValues(typeof(ConnectionType));
         public ICommand Host => new RelayCommand(HostServer, CanHostServer);
@@ -59,12 +65,16 @@ namespace WebSocketChat.ViewModels
 
 
         private bool CanHostServer()
-        {
+        {       
             return string.IsNullOrEmpty(_name) || _isHosting || _isConnecting ? false : true; 
         }
         private bool CanConnectToServer()
         {
-            return string.IsNullOrEmpty(_name) || _isConnecting ? false : true;
+            if (CurrentConnectionType == ConnectionType.External)
+                return string.IsNullOrEmpty(_name) || string.IsNullOrEmpty(IPAddress) || _isConnecting ? false : true;
+
+            //Disable the connect button if _isHosting is true since it automatically connects.
+            return string.IsNullOrEmpty(_name) || _isConnecting || _isHosting ? false : true;
         }
 
         private void ConnectToServer()
@@ -99,6 +109,7 @@ namespace WebSocketChat.ViewModels
             var server = GetServer();
             server.Start();
             _isHosting = true;
+            ConnectToServer();
         }
 
         private Process GetServer()

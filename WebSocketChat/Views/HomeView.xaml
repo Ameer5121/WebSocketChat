@@ -17,8 +17,7 @@
         TextElement.FontSize="14"
         FontFamily="{materialDesign:MaterialDesignFont}"
         ResizeMode="NoResize" 
-        MouseDown="Window_MouseDown"
->
+        MouseDown="Window_MouseDown">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="13*"/>
@@ -37,7 +36,6 @@
                 <Button Margin="455,4,0,0" BorderBrush="Transparent" Style="{StaticResource ExitButton}" Click="Exit_Click">
                     <Image Source="/Resources/Exit.png" Height="39" Width="54"></Image>
                 </Button>
-
             </StackPanel>
         </Border>
 
@@ -68,7 +66,7 @@
                  Grid.Row="1"
                  FontSize="20"
                  BorderBrush="White"
-                 Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" 
+                 Text="{Binding IPAddress, UpdateSourceTrigger=PropertyChanged}" 
                  TextAlignment="Center"
                  HorizontalContentAlignment="Stretch"
                  VerticalContentAlignment="Center"
