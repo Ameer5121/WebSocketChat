@@ -1,4 +1,4 @@
-﻿<Window x:Class="WebSocketChat.Views.HomeView"
+﻿<Window x:Class="WebSocketChat.Views.HomeView"      
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -27,40 +27,91 @@
 
         <!--Black Border & Exit Button-->
         <Border Background="#FF2C2B2B" Grid.Row="0">
-            <Button Margin="600,0,0,0" BorderBrush="Transparent" Style="{StaticResource ExitButton}" Click="Exit_Click">
-                <Image Source="/Resources/Exit.png" Height="39" Width="54"></Image>
-            </Button>
-        </Border>
-
-        <TextBlock Text="WebSocket Chat" 
-                   Margin="253,10,280,462"
-                   Grid.Row="1"
+            <StackPanel Orientation="Horizontal">
+                <materialDesign:PackIcon Kind="Chat" Height="48" Width="28"></materialDesign:PackIcon>
+                <TextBlock Text="WebSocket Chat" 
                    TextAlignment="Center"
                    FontSize="15"
-                   Foreground="White" Style="{StaticResource MaterialDesignHeadline3TextBlock}"></TextBlock>
+                   Foreground="White" Style="{StaticResource MaterialDesignHeadline3TextBlock}" 
+                  Margin="5,15,0,10" Width="111"/>
+                <Button Margin="455,4,0,0" BorderBrush="Transparent" Style="{StaticResource ExitButton}" Click="Exit_Click">
+                    <Image Source="/Resources/Exit.png" Height="39" Width="54"></Image>
+                </Button>
+
+            </StackPanel>
+        </Border>
+
+        <!--IP-->
+        <TextBlock Margin="257,58,292,418" 
+                   Grid.Row="1" 
+                   Text="IP Address:" 
+                   TextAlignment="Center"
+                   FontSize="20"
+                   Foreground="Silver">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Visibility" Value="Collapsed"></Setter>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=connectionType, Path=SelectedValue}" Value="External">
+                            <Setter Property="Visibility" Value="Visible"></Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=connectionType, Path=SelectedValue}" Value="Internal">
+                            <Setter Property="Visibility" Value="Collapsed"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        <TextBox HorizontalAlignment="Right" 
+                 Width="184" 
+                 Margin="0,83,250,372" 
+                 Grid.Row="1"
+                 FontSize="20"
+                 BorderBrush="White"
+                 Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" 
+                 TextAlignment="Center"
+                 HorizontalContentAlignment="Stretch"
+                 VerticalContentAlignment="Center"
+                 materialDesign:TextFieldAssist.UnderlineBrush="DimGray"
+                 CaretBrush="White"
+                 Foreground="AliceBlue">
+            <TextBox.Style>
+                <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
+                    <Setter Property="Visibility" Value="Collapsed"></Setter>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=connectionType, Path=SelectedValue}" Value="External">
+                            <Setter Property="Visibility" Value="Visible"></Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=connectionType, Path=SelectedValue}" Value="Internal">
+                            <Setter Property="Visibility" Value="Collapsed"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
 
         <!--Name-->
-        <TextBlock Margin="275,152,316,319" 
+        <TextBlock Margin="276,154,315,322" 
                    Grid.Row="1" 
                    Text="Name:" 
                    TextAlignment="Center"
                    FontSize="20"
                    Foreground="Silver"></TextBlock>
-
         <TextBox HorizontalAlignment="Right" 
                  Width="184" 
-                 Margin="0,185,250,283" 
+                 Margin="0,172,250,283" 
                  Grid.Row="1"
                  FontSize="20"
                  BorderBrush="White"
                  Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" 
                  Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
                  TextAlignment="Center"
-                 HorizontalContentAlignment="Center"
+                 HorizontalContentAlignment="Stretch"
                  VerticalContentAlignment="Center"
                  materialDesign:TextFieldAssist.UnderlineBrush="DimGray"
                  CaretBrush="White"
                  Foreground="AliceBlue"></TextBox>
+        
 
         <!--Connect-->
         <Button Margin="229,240,269,190" 
@@ -115,7 +166,7 @@
             </ProgressBar.Style>
         </ProgressBar>
 
-        <Grid Background="Transparent" Margin="418,0,0,283" Grid.Row="1">
+        <Grid Background="Transparent" Margin="439,0,0,283" Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
@@ -155,7 +206,7 @@
             </Expander>
         </Grid>
 
-        <ComboBox Margin="395,282,161,191" Grid.Row="1" FlowDirection="LeftToRight" 
+        <ComboBox x:Name="connectionType" Margin="395,282,161,191" Grid.Row="1" FlowDirection="LeftToRight" 
                   materialDesign:HintAssist.Hint="Connection"
                   ItemsSource="{Binding ConnectionTypes}"
                   SelectedValue="{Binding CurrentConnectionType}"
