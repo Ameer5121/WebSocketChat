@@ -14,6 +14,7 @@ using System.Windows.Input;
 using WebSocketChat.Commands;
 using System.Windows;
 using System.Collections.Specialized;
+using System.Threading;
 
 namespace WebSocketChat.ViewModels
 {
@@ -22,6 +23,8 @@ namespace WebSocketChat.ViewModels
         private UserModel _currentUser;
         private ObservableCollection<UserModel> _users;
         private ObservableCollection<MessageModel> _messages;
+        private CancellationTokenSource _heartbeatToken;
+        private bool _isDisconnecting;
         private string _currentMessage;
         private HubConnection _connection;
         private INetworkService _networkservice;
@@ -33,8 +36,9 @@ namespace WebSocketChat.ViewModels
             _messages = data.Messages;
             _connection = connection;
             _networkservice = networkservice;
+            _heartbeatToken = new CancellationTokenSource();
             CreateHandlers();
-            SendHeartBeat();
+            SendHeartBeat(_heartbeatToken.Token);
         }
 
         public ICommand Send => new RelayCommand(SendMessage, CanSendMessage);
@@ -54,6 +58,13 @@ namespace WebSocketChat.ViewModels
             get => _currentMessage;
             set => SetPropertyValue(ref _currentMessage, value);
         }
+        public bool IsDisconnecting
+        {
+            get => _isDisconnecting;
+            set => SetPropertyValue(ref _isDisconnecting, value);
+        }
+
+        public ICommand Disconnect => new RelayCommand(DisconnectFromServer);
 
         private bool CanSendMessage()
         {
@@ -85,10 +96,12 @@ namespace WebSocketChat.ViewModels
              }
         }
 
-        private async Task SendHeartBeat()
+        private async Task SendHeartBeat(CancellationToken token)
         {
             while (true)
             {
+                if (token.IsCancellationRequested)
+                    break;
                 await Task.Delay(2000);
                 var httpClient = new HttpClient();
                 httpClient.BaseAddress = new Uri("https://localhost:5001");
@@ -126,6 +139,16 @@ namespace WebSocketChat.ViewModels
                        Messages.Add(newData);
                });
             }               
+        }
+
+        private async Task DisconnectFromServer()
+        {
+            IsDisconnecting = true;
+            //UnSubscribe and dispose.
+            _connection.Remove("ReceiveData");
+            _heartbeatToken.Cancel();
+            await _connection.DisposeAsync();
+            OnDisconnect?.Invoke(this, EventArgs.Empty);
         }
     }
 }

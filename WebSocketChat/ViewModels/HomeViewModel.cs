@@ -30,6 +30,12 @@ namespace WebSocketChat.ViewModels
         private HubConnection connection;
         private UserModel _currentUser;
 
+        public HomeViewModel()
+        {
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            GC.Collect();
+        }
         public string Name
         {           
             get => _name;
