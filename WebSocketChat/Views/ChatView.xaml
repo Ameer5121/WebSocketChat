@@ -81,7 +81,7 @@
                             <RowDefinition Height="Auto"></RowDefinition>
                         </Grid.RowDefinitions>
                         <!--Options Expander-->
-                        <Expander Margin="0,20" Background="#FF4F4C4C" IsExpanded="True">
+                        <Expander Margin="0,20" Background="#FF4F4C4C" IsExpanded="False">
                             <Expander.Header>
                                 <DockPanel FlowDirection="LeftToRight">
                                     <materialDesign:PackIcon Kind="Settings" Height="30" Width="33"></materialDesign:PackIcon>
@@ -174,7 +174,8 @@
             Margin="24,728,18,223">
             <TextBox VerticalAlignment="Center"
                      FontSize="15" 
-                     Text="{Binding CurrentMessage, UpdateSourceTrigger=PropertyChanged}" 
+                     Text="{Binding CurrentMessage, UpdateSourceTrigger=PropertyChanged}"
+                     materialDesign:HintAssist.Hint="Message"
                      Height="37"
                      VerticalContentAlignment="Center"
                      CaretBrush="White"

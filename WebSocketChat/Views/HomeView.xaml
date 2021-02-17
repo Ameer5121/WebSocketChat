@@ -39,40 +39,23 @@
             </StackPanel>
         </Border>
 
-        <!--IP-->
-        <TextBlock Margin="257,58,292,418" 
-                   Grid.Row="1" 
-                   Text="IP Address:" 
-                   TextAlignment="Center"
-                   FontSize="20"
-                   Foreground="Silver">
-            <TextBlock.Style>
-                <Style TargetType="TextBlock">
-                    <Setter Property="Visibility" Value="Collapsed"></Setter>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding ElementName=connectionType, Path=SelectedValue}" Value="External">
-                            <Setter Property="Visibility" Value="Visible"></Setter>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding ElementName=connectionType, Path=SelectedValue}" Value="Internal">
-                            <Setter Property="Visibility" Value="Collapsed"></Setter>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </TextBlock.Style>
-        </TextBlock>
+        <!--IP Address-->
         <TextBox HorizontalAlignment="Right" 
                  Width="184" 
                  Margin="0,83,250,372" 
                  Grid.Row="1"
                  FontSize="20"
                  BorderBrush="White"
-                 Text="{Binding IPAddress, UpdateSourceTrigger=PropertyChanged}" 
+                 Text="{Binding CurrentIPAddress, UpdateSourceTrigger=PropertyChanged}" 
                  TextAlignment="Center"
                  HorizontalContentAlignment="Stretch"
                  VerticalContentAlignment="Center"
                  materialDesign:TextFieldAssist.UnderlineBrush="DimGray"
                  CaretBrush="White"
-                 Foreground="AliceBlue">
+                 Foreground="AliceBlue"   
+                 materialDesign:HintAssist.Hint="IP Address"
+                 materialDesign:HintAssist.Foreground="AntiqueWhite"
+                 materialDesign:HintAssist.HelperText="e.g., 192.168.1.2">
             <TextBox.Style>
                 <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
                     <Setter Property="Visibility" Value="Collapsed"></Setter>
@@ -87,14 +70,6 @@
                 </Style>
             </TextBox.Style>
         </TextBox>
-
-        <!--Name-->
-        <TextBlock Margin="276,154,315,322" 
-                   Grid.Row="1" 
-                   Text="Name:" 
-                   TextAlignment="Center"
-                   FontSize="20"
-                   Foreground="Silver"></TextBlock>
         <TextBox HorizontalAlignment="Right" 
                  Width="184" 
                  Margin="0,172,250,283" 
@@ -103,6 +78,8 @@
                  BorderBrush="White"
                  Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" 
                  Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                 materialDesign:HintAssist.Hint="Name"
+                 materialDesign:HintAssist.Foreground="AntiqueWhite"
                  TextAlignment="Center"
                  HorizontalContentAlignment="Stretch"
                  VerticalContentAlignment="Center"

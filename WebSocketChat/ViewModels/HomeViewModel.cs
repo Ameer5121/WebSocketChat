@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http;
+using System.Net;
 using Models;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
@@ -53,7 +54,7 @@ namespace WebSocketChat.ViewModels
             get => _selectedconnectionType;
             set => _selectedconnectionType = value;
         }
-        public string IPAddress
+        public string CurrentIPAddress
         {
             get => _ipAddress;
             set => SetPropertyValue(ref _ipAddress, value);
@@ -71,25 +72,38 @@ namespace WebSocketChat.ViewModels
         private bool CanConnectToServer()
         {
             if (CurrentConnectionType == ConnectionType.External)
-                return string.IsNullOrEmpty(_name) || string.IsNullOrEmpty(IPAddress) || _isConnecting ? false : true;
+                return string.IsNullOrEmpty(_name) || string.IsNullOrEmpty(CurrentIPAddress) || _isConnecting ? false : true;
 
             //Disable the connect button if _isHosting is true since it automatically connects.
             return string.IsNullOrEmpty(_name) || _isConnecting || _isHosting ? false : true;
         }
-
         private void ConnectToServer()
         {
             Task.Run(async () =>
             {
                 LogStatus("Connecting...");
-                var isSuccessful = await SendUser(_currentUser = new UserModel { Name = this.Name });
+                var isSuccessful = await SendUser(_currentUser = new UserModel 
+                { 
+                    Name = this.Name,
+                    EndPoint = CurrentIPAddress                   
+                },CurrentConnectionType);
+
                 if (isSuccessful)
                 {
-                    connection = new HubConnectionBuilder()
-                    .WithUrl("https://localhost:5001/chathub")
-                    .Build();
-                    CreateHandlers();
-                    await connection.StartAsync();
+                   if(CurrentConnectionType == ConnectionType.External)
+                   {
+                      connection = new HubConnectionBuilder()
+                      .WithUrl($"http://{CurrentIPAddress}:5001/chathub")
+                      .Build();                    
+                   }
+                   else
+                   {
+                      connection = new HubConnectionBuilder()
+                      .WithUrl("http://localhost:5001/chathub")
+                      .Build();
+                   }
+                   CreateHandlers();
+                   await connection.StartAsync();
                 }
                 else
                 {
@@ -149,11 +163,29 @@ namespace WebSocketChat.ViewModels
             });
         }
 
-        private async Task<bool> SendUser(UserModel user)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="user">The user to send to the server</param>
+        /// <param name="isExternal">Determines whether the connection is external or internal</param>
+        /// <returns></returns>
+        private async Task<bool> SendUser(UserModel user, ConnectionType connectionType)
         {
             IsConnecting = true;
             var httpClient = new HttpClient();
-            httpClient.BaseAddress = new Uri("https://localhost:5001");
+            if (connectionType == ConnectionType.External)
+            {
+                var isSuccessful = IPAddress.TryParse(CurrentIPAddress, out _);
+                if (!isSuccessful)
+                {
+                    return false;
+                }              
+                httpClient.BaseAddress = new Uri($"http://{CurrentIPAddress}:5001");
+            }
+            else
+            {
+                httpClient.BaseAddress = new Uri("http://localhost:5001");
+            }
             var jsonData = JsonConvert.SerializeObject(user);
             try
             {
@@ -163,7 +195,7 @@ namespace WebSocketChat.ViewModels
                 if (response.IsSuccessStatusCode)
                     return true;
 
-            }catch(HttpRequestException)
+            }catch(HttpRequestException e)
             {
                 return false;
             }

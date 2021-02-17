@@ -24,6 +24,7 @@ namespace WebSocketChat.ViewModels
         private ObservableCollection<UserModel> _users;
         private ObservableCollection<MessageModel> _messages;
         private CancellationTokenSource _heartbeatToken;
+        private HttpClient _httpclient;
         private bool _isDisconnecting;
         private string _currentMessage;
         private HubConnection _connection;
@@ -36,8 +37,10 @@ namespace WebSocketChat.ViewModels
             _messages = data.Messages;
             _connection = connection;
             _networkservice = networkservice;
+            _httpclient = new HttpClient();
             _heartbeatToken = new CancellationTokenSource();
             CreateHandlers();
+            _httpclient.BaseAddress = GetEndPoint();
             SendHeartBeat(_heartbeatToken.Token);
         }
 
@@ -72,13 +75,11 @@ namespace WebSocketChat.ViewModels
         }
         private async Task SendMessage()
         {
-             var httpClient = new HttpClient();
-             httpClient.BaseAddress = new Uri("https://localhost:5001");
              var messagetoSend = new MessageModel { Message = CurrentMessage, User = _currentUser};
              var jsonData = JsonConvert.SerializeObject(messagetoSend);
              try
              {
-                 await httpClient.PostAsync("/api/chat/PostMessage",
+                 await _httpclient.PostAsync("/api/chat/PostMessage",
                      new StringContent(jsonData, Encoding.UTF8, "application/json"));
 
                  CurrentMessage = default;
@@ -102,12 +103,11 @@ namespace WebSocketChat.ViewModels
             {
                 if (token.IsCancellationRequested)
                     break;
+
                 await Task.Delay(2000);
-                var httpClient = new HttpClient();
-                httpClient.BaseAddress = new Uri("https://localhost:5001");
                 try
                 {
-                    var response = await httpClient.GetAsync("api/chat/GetHeartBeat");
+                    var response = await _httpclient.GetAsync("api/chat/GetHeartBeat");
                 }
                 catch (HttpRequestException)
                 {
@@ -139,6 +139,18 @@ namespace WebSocketChat.ViewModels
                        Messages.Add(newData);
                });
             }               
+        }
+
+        /// <summary>
+        /// Gets the correct endpoint depending on the connection type.
+        /// </summary>
+        private Uri GetEndPoint()
+        {
+            if (string.IsNullOrEmpty(_currentUser.EndPoint))
+            {
+                return new Uri("http://localhost:5001");
+            }
+            return new Uri($"http://{_currentUser.EndPoint}:5001");
         }
 
         private async Task DisconnectFromServer()
