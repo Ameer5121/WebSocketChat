@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChattingHub", "ChattingHub\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{96FF86BC-25D1-4CE0-9ADC-B4652FF068BA}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "WebSocketSetup", "WebSocketSetup\WebSocketSetup.vdproj", "{AC88C791-AFFA-4FEA-BECB-F4FF32EDED08}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,8 @@ Global
 		{96FF86BC-25D1-4CE0-9ADC-B4652FF068BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96FF86BC-25D1-4CE0-9ADC-B4652FF068BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96FF86BC-25D1-4CE0-9ADC-B4652FF068BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC88C791-AFFA-4FEA-BECB-F4FF32EDED08}.Debug|Any CPU.ActiveCfg = Debug
+		{AC88C791-AFFA-4FEA-BECB-F4FF32EDED08}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

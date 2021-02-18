@@ -113,29 +113,41 @@ namespace WebSocketChat.ViewModels
             });
         }
 
-        private void HostServer()
+        private async Task HostServer()
         {
             if (IsServerProcessRunning())
             {
                 LogStatus("A server process is already running!");
                 return;
             }
-            var server = GetServer();
+            var server = await GetServer();
+            if(server == null)
+            {
+                LogStatus("Could not find the server process!");
+                return;
+            }
             server.Start();
             _isHosting = true;
             ConnectToServer();
         }
 
-        private Process GetServer()
+        private async Task<Process> GetServer()
         {
-            Process process = new Process();
-            ProcessStartInfo processInfo = new ProcessStartInfo();
-            process.StartInfo = processInfo;
-            string[] files = Directory.GetFiles(Directory.GetCurrentDirectory(),          
-            "ChattingHub.exe", SearchOption.AllDirectories);;
-            processInfo.FileName = files[0];
-            process.StartInfo = processInfo;
-            return process;
+            return await Task.Run(() =>
+            {
+                Process process = new Process();
+                ProcessStartInfo processInfo = new ProcessStartInfo();
+                process.StartInfo = processInfo;
+                string[] files = Directory.GetFiles(Directory.GetCurrentDirectory(),
+                "ChattingHub.exe", SearchOption.AllDirectories);
+                if (files.Count() == 0)
+                {
+                    return null;
+                }
+                processInfo.FileName = files[0];
+                process.StartInfo = processInfo;
+                return process;
+            });
         }
 
         private bool IsServerProcessRunning()

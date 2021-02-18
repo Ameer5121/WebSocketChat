@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "WmoSdbunjdffQXTz89m4o5xLEZ/wWTU+lUvfiLMDm1QS0YvgPtTMfodEwY/AOeGHBQicwvBgQ24t0a8ZatxdYQ==",
+  "dgSpecHash": "555+SsaQnkkQX/KsqENHy/Ke0ggdRDnGxEWjuUFHEXiPJIY2Fkx62Px7lrtVK9rCrmnR8FO9NSx12IqAan26Uw==",
   "success": true,
   "projectFilePath": "D:\\Projects\\Gits\\WebSocketChat\\WebSocketChat\\ChattingHub\\ChattingHub.csproj",
   "expectedPackageFiles": [
@@ -9,10 +9,7 @@
     "C:\\Users\\User\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\5.6.3\\swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
-    "C:\\Users\\User\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\5.6.3\\swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512",
-    "C:\\Users\\User\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\5.0.2\\microsoft.netcore.app.runtime.win-x64.5.0.2.nupkg.sha512",
-    "C:\\Users\\User\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\5.0.2\\microsoft.windowsdesktop.app.runtime.win-x64.5.0.2.nupkg.sha512",
-    "C:\\Users\\User\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\5.0.2\\microsoft.aspnetcore.app.runtime.win-x64.5.0.2.nupkg.sha512"
+    "C:\\Users\\User\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\5.6.3\\swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512"
   ],
   "logs": []
 }

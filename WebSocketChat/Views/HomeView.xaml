@@ -33,8 +33,8 @@
                    FontSize="15"
                    Foreground="White" Style="{StaticResource MaterialDesignHeadline3TextBlock}" 
                   Margin="5,15,0,10" Width="111"/>
-                <Button Margin="455,4,0,0" BorderBrush="Transparent" Style="{StaticResource ExitButton}" Click="Exit_Click">
-                    <Image Source="/Resources/Exit.png" Height="39" Width="54"></Image>
+                <Button Margin="455,0,0,0" BorderBrush="Transparent" Style="{StaticResource ExitButton}" Click="Exit_Click">
+                    <Image Source="/Resources/Exit.png" Height="44" Width="54"></Image>
                 </Button>
             </StackPanel>
         </Border>
@@ -141,46 +141,6 @@
                 </Style>
             </ProgressBar.Style>
         </ProgressBar>
-
-        <Grid Background="Transparent" Margin="439,0,0,283" Grid.Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"></RowDefinition>
-            </Grid.RowDefinitions>
-            <Expander Background="#FF3A3838" FlowDirection="RightToLeft" ExpandDirection="Down" Margin="0,0,0,0">
-                <Expander.Header>
-                    <StackPanel FlowDirection="LeftToRight" Margin="0,0,-13,0" Height="24" Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="Faq" Width="18" Height="19" Margin="0,5,0,0"></materialDesign:PackIcon>
-                        <TextBlock Text="Information" Margin="2,5,0,0" Width="104" FontSize="17" TextAlignment="Center" VerticalAlignment="Center" Height="19"></TextBlock>
-                    </StackPanel>
-                </Expander.Header>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="8*"/>
-                            <ColumnDefinition Width="51*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <Expander Background="#FF4F4C4C" Grid.ColumnSpan="2" Margin="-0,10,0,10">
-                            <Expander.Header>
-                                <StackPanel FlowDirection="LeftToRight" Margin="0,0,-13,0" Height="24" Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="Connection" Width="18" Height="19" Margin="0,5,0,0"></materialDesign:PackIcon>
-                                    <TextBlock Text="External Connections" Margin="2,5,0,0" Width="140" FontSize="14" TextAlignment="Center" VerticalAlignment="Center" Height="19"></TextBlock>
-                                </StackPanel>
-                            </Expander.Header>
-                            <TextBlock TextWrapping="Wrap" 
-                                       Text="Hosting an external server requires you to port-forward your computer's IP address along with the port 5001"
-                                       FontSize="13"
-                                       TextAlignment="Right"></TextBlock>
-                        </Expander>
-                    </Grid>
-                </Grid>
-            </Expander>
-        </Grid>
 
         <ComboBox x:Name="connectionType" Margin="395,282,161,191" Grid.Row="1" FlowDirection="LeftToRight" 
                   materialDesign:HintAssist.Hint="Connection"
