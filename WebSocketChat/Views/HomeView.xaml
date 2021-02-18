@@ -27,7 +27,7 @@
         <!--Black Border & Exit Button-->
         <Border Background="#FF2C2B2B" Grid.Row="0">
             <StackPanel Orientation="Horizontal">
-                <materialDesign:PackIcon Kind="Chat" Height="48" Width="28"></materialDesign:PackIcon>
+                <materialDesign:PackIcon Kind="ChatBubbleOutline" Height="48" Width="28"></materialDesign:PackIcon>
                 <TextBlock Text="WebSocket Chat" 
                    TextAlignment="Center"
                    FontSize="15"
@@ -70,6 +70,7 @@
                 </Style>
             </TextBox.Style>
         </TextBox>
+
         <TextBox HorizontalAlignment="Right" 
                  Width="184" 
                  Margin="0,172,250,283" 
