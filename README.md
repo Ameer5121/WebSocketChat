@@ -8,17 +8,17 @@ This application works using a user-hosted server along with SignlarR's library 
 * JSON serialization through **Newtonsoft.Json**
 * Web API project to handle HTTP requests and send them over to SignlarR's hub.
 
-# Core functionality :
+# Core functionality:
 * List of connected users, automatically updating when one joins/leaves
 * Returning to home view automatically when server is down
 * Allows for External/Internal connections
 * Logging out manually.
 
-# Framework
+# Framework:
 * Made in WPF
      * MVVM Design Pattern
  
- # Third-Party Libraries
+ # Third-Party Libraries:
  * SignlaR
  * Newtonsoft JSON
  * MaterialDesignThemes
