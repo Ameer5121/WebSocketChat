@@ -56,11 +56,11 @@ namespace WebSocketChat.Commands
             return this.canExecute == null ? true : this.canExecute();
         }
 
-        public void Execute(object parameter)
+        public async void Execute(object parameter)
         {
             if (execute == null)
             {
-                Taskexecute();
+               await Taskexecute();
                 return;
             }
             execute();

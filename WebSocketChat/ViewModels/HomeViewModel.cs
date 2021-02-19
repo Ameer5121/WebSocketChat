@@ -115,39 +115,39 @@ namespace WebSocketChat.ViewModels
 
         private async Task HostServer()
         {
-            if (IsServerProcessRunning())
+            await Task.Run(() =>
             {
-                LogStatus("A server process is already running!");
-                return;
-            }
-            var server = await GetServer();
-            if(server == null)
-            {
-                LogStatus("Could not find the server process!");
-                return;
-            }
-            server.Start();
-            _isHosting = true;
-            ConnectToServer();
+                if (IsServerProcessRunning())
+                {
+                    LogStatus("A server process is already running!");
+                    return;
+                }
+                var server = GetServer();
+                if (server == null)
+                {
+                    LogStatus("Could not find the server process!");
+                    return;
+                }
+                server.Start();
+                _isHosting = true;
+                ConnectToServer();
+            });
         }
 
-        private async Task<Process> GetServer()
+        private Process GetServer()
         {
-            return await Task.Run(() =>
+            Process process = new Process();
+            ProcessStartInfo processInfo = new ProcessStartInfo();
+            process.StartInfo = processInfo;
+            string[] files = Directory.GetFiles(Directory.GetCurrentDirectory(),
+            "ChattingHub.exe", SearchOption.AllDirectories);
+            if (files.Count() == 0)
             {
-                Process process = new Process();
-                ProcessStartInfo processInfo = new ProcessStartInfo();
-                process.StartInfo = processInfo;
-                string[] files = Directory.GetFiles(Directory.GetCurrentDirectory(),
-                "ChattingHub.exe", SearchOption.AllDirectories);
-                if (files.Count() == 0)
-                {
-                    return null;
-                }
-                processInfo.FileName = files[0];
-                process.StartInfo = processInfo;
-                return process;
-            });
+                return null;
+            }
+            processInfo.FileName = files[0];
+            process.StartInfo = processInfo;
+            return process;
         }
 
         private bool IsServerProcessRunning()
