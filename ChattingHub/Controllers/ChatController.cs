@@ -10,6 +10,7 @@ using Models;
 
 namespace ChattingHub.Controllers
 {
+    [Route("api/chat")]
     [ApiController]
     public class ChatController : ControllerBase
     {
@@ -22,9 +23,8 @@ namespace ChattingHub.Controllers
             _hubContext = hubContext;
             _chathub = new ChatHub();
         }
-
         [HttpPost]
-        [Route("api/chat/PostUser")]
+        [Route("PostUser")]
         public void PostUser(UserModel user)
         {
             if(user.Name != null)
@@ -34,7 +34,7 @@ namespace ChattingHub.Controllers
         }
 
         [HttpPost]
-        [Route("api/chat/PostMessage")]
+        [Route("PostMessage")]
         public void AddMessage(MessageModel message)
         {
             if (message.Message != null && message.User.Name != null)
@@ -44,7 +44,7 @@ namespace ChattingHub.Controllers
         }
 
         [HttpGet]
-        [Route("api/chat/GetHeartBeat")]
+        [Route("GetHeartBeat")]
         public string GetHeartBeat()
         {
             return "Alive";
