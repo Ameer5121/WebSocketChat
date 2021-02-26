@@ -79,3 +79,4 @@ D:\Projects\Gits\WebSocketChat\WebSocketChat\WebSocketChat\obj\Release\Resources
 D:\Projects\Gits\WebSocketChat\WebSocketChat\WebSocketChat\obj\Release\Views\ChatView.baml
 D:\Projects\Gits\WebSocketChat\WebSocketChat\WebSocketChat\obj\Release\Views\HomeView.baml
 D:\Projects\Gits\WebSocketChat\WebSocketChat\WebSocketChat\obj\Release\WebSocketChat.csproj.CopyComplete
+D:\Projects\Gits\WebSocketChat\WebSocketChat\WebSocketChat\obj\Release\GeneratedInternalTypeHelper.g.cs

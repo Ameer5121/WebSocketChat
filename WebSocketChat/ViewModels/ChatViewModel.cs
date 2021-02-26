@@ -28,15 +28,13 @@ namespace WebSocketChat.ViewModels
         private bool _isDisconnecting;
         private string _currentMessage;
         private HubConnection _connection;
-        private INetworkService _networkservice;
         public event EventHandler OnDisconnect;
-        public ChatViewModel(DataModel data, UserModel currentuser, HubConnection connection, INetworkService networkservice)
+        public ChatViewModel(DataModel data, UserModel currentuser, HubConnection connection)
         {
             _currentUser = currentuser;
             _users = data.Users;
             _messages = data.Messages;
             _connection = connection;
-            _networkservice = networkservice;
             _httpclient = new HttpClient();
             _heartbeatToken = new CancellationTokenSource();
             CreateHandlers();

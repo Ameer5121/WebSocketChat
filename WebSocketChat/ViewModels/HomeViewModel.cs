@@ -17,7 +17,6 @@ using System.Windows;
 using Microsoft.AspNetCore.SignalR.Client;
 using WebSocketChat.Events;
 using Newtonsoft.Json;
-using WebSocketChat.Services;
 
 namespace WebSocketChat.ViewModels
 {
@@ -27,7 +26,7 @@ namespace WebSocketChat.ViewModels
         private bool _isConnecting = false;
         private string _name;
         private string _status;
-        private string _ipAddress;
+        private string _ipAddress;       
         private ConnectionType _selectedconnectionType = ConnectionType.Internal;
         private HubConnection connection;
         private UserModel _currentUser;
@@ -168,7 +167,7 @@ namespace WebSocketChat.ViewModels
                 {
                     OnSuccessfulConnect?.Invoke(this, new ConnectionEventArgs
                     {
-                        ChatViewModelContext = new ChatViewModel(data, _currentUser, connection, new NetworkService())
+                        ChatViewModelContext = new ChatViewModel(data, _currentUser, connection)
                     });
                 });
                 connection.Remove("Connected");
@@ -196,6 +195,7 @@ namespace WebSocketChat.ViewModels
             }
             else
             {
+                
                 httpClient.BaseAddress = new Uri("http://localhost:5001");
             }
             var jsonData = JsonConvert.SerializeObject(user);
