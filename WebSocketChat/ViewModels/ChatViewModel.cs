@@ -7,7 +7,6 @@ using System.Collections.ObjectModel;
 using WebSocketChat.ViewModels;
 using Models;
 using Microsoft.AspNetCore.SignalR.Client;
-using WebSocketChat.Services;
 using System.Net.Http;
 using Newtonsoft.Json;
 using System.Windows.Input;
