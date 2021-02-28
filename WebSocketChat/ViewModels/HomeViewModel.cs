@@ -78,62 +78,88 @@ namespace WebSocketChat.ViewModels
         }
         private async Task ConnectToServer()
         {
-            await Task.Run(async () =>
+            try
             {
-                LogStatus("Connecting...");
-                var isSuccessful = await SendUser(_currentUser = new UserModel 
-                { 
-                    Name = this.Name,
-                    EndPoint = CurrentIPAddress                   
-                }, CurrentConnectionType);
+                await Task.Run(async () =>
+                {
+                    _ = LogStatus("Connecting...");
+                    await SendUser(_currentUser = new UserModel
+                    {
+                        Name = this.Name,
+                        EndPoint = CurrentIPAddress
+                    }, CurrentConnectionType);
 
-                if (isSuccessful)
-                {
-                   if(CurrentConnectionType == ConnectionType.External)
-                   {
-                      connection = new HubConnectionBuilder()
-                      .WithUrl($"http://{CurrentIPAddress}:5001/chathub")
-                      .Build();                    
-                   }
-                   else
-                   {
-                      connection = new HubConnectionBuilder()
-                      .WithUrl("http://localhost:5001/chathub")
-                      .Build();
-                   }
-                   CreateHandlers();
-                   await connection.StartAsync();
-                }
-                else
-                {
-                    LogStatus("Could not connect to the server!");
-                    IsConnecting = false;
-                }
-            });
+                    if (CurrentConnectionType == ConnectionType.External)
+                    {
+                        connection = new HubConnectionBuilder()
+                        .WithUrl($"http://{CurrentIPAddress}:5001/chathub")
+                        .Build();
+                    }
+                    else
+                    {
+                        connection = new HubConnectionBuilder()
+                        .WithUrl("http://localhost:5001/chathub")
+                        .Build();
+                    }
+                    CreateHandlers();
+                    await connection.StartAsync();
+
+                });
+            }
+            catch(HttpRequestException)
+            {
+                _ = LogStatus($"Could not connect to the server.");
+                IsConnecting = false;
+            }
+            catch (TaskCanceledException)
+            {
+                _ = LogStatus($"Could not connect to the server.");
+                IsConnecting = false;
+            }
+            catch(FormatException y)
+            {
+               _ = LogStatus(y.Message);
+                IsConnecting = false;
+            }
         }
 
         private async Task HostServer()
         {
-            await Task.Run(() =>
+            try
             {
-                if (IsServerProcessRunning())
+                await Task.Run(() =>
                 {
-                    LogStatus("A server process is already running!");
-                    return;
-                }
-                var server = GetServer();
-                if (server == null)
-                {
-                    LogStatus("Could not find the server process!");
-                    return;
-                }
-                server.Start();
-                _isHosting = true;
-                ConnectToServer();
-            });
+                    if (IsServerProcessRunning())
+                    {
+                        _ = LogStatus("A server process is already running!");
+                        return;
+                    }
+                    var server = GetServerProcess();
+                    if (server == null)
+                    {
+                        _ = LogStatus("Could not find the server process!");
+                        return;
+                    }
+                    server.Start();
+                    _isHosting = true;
+                    ConnectToServer();
+                });
+            }
+            catch(IOException x)
+            {
+                _ = LogStatus(x.Message);
+            }
+            catch (UnauthorizedAccessException y)
+            {
+                _ = LogStatus(y.Message);
+            }
+            catch (InvalidOperationException z)
+            {
+                _ = LogStatus(z.Message);
+            }
         }
 
-        private Process GetServer()
+        private Process GetServerProcess()
         {
             Process process = new Process();
             ProcessStartInfo processInfo = new ProcessStartInfo();
@@ -180,16 +206,17 @@ namespace WebSocketChat.ViewModels
         /// <param name="user">The user to send to the server</param>
         /// <param name="isExternal">Determines whether the connection is external or internal</param>
         /// <returns></returns>
-        private async Task<bool> SendUser(UserModel user, ConnectionType connectionType)
+        private async Task SendUser(UserModel user, ConnectionType connectionType)
         {
             IsConnecting = true;
             var httpClient = new HttpClient();
+           httpClient.Timeout = TimeSpan.FromSeconds(5);
             if (connectionType == ConnectionType.External)
             {
                 var isSuccessful = IPAddress.TryParse(CurrentIPAddress, out _);
                 if (!isSuccessful)
                 {
-                    return false;
+                    throw new FormatException("IP Address formatting Incorrect!");
                 }              
                 httpClient.BaseAddress = new Uri($"http://{CurrentIPAddress}:5001");
             }
@@ -198,22 +225,15 @@ namespace WebSocketChat.ViewModels
                 
                 httpClient.BaseAddress = new Uri("http://localhost:5001");
             }
-
             var jsonData = JsonConvert.SerializeObject(user);
 
-            try
-            {
-                var response = await httpClient.PostAsync("/api/chat/PostUser",
-                    new StringContent(jsonData, Encoding.UTF8, "application/json"));
+            var response = await httpClient.PostAsync("/api/chat/PostUser",
+                 new StringContent(jsonData, Encoding.UTF8, "application/json"));
 
-                if (response.IsSuccessStatusCode)
-                    return true;
-
-            }catch(HttpRequestException e)
+            if (!response.IsSuccessStatusCode)
             {
-                return false;
+                throw new HttpRequestException($"Could not connect to the server. Status Code: {response.StatusCode}");
             }
-            return false;
         }
 
         private async Task LogStatus(string message)
