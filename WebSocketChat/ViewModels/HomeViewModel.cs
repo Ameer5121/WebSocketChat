@@ -76,16 +76,16 @@ namespace WebSocketChat.ViewModels
             //Disable the connect button if _isHosting is true since it automatically connects.
             return string.IsNullOrEmpty(_name) || _isConnecting || _isHosting ? false : true;
         }
-        private void ConnectToServer()
+        private async Task ConnectToServer()
         {
-            Task.Run(async () =>
+            await Task.Run(async () =>
             {
                 LogStatus("Connecting...");
                 var isSuccessful = await SendUser(_currentUser = new UserModel 
                 { 
                     Name = this.Name,
                     EndPoint = CurrentIPAddress                   
-                },CurrentConnectionType);
+                }, CurrentConnectionType);
 
                 if (isSuccessful)
                 {
@@ -198,7 +198,9 @@ namespace WebSocketChat.ViewModels
                 
                 httpClient.BaseAddress = new Uri("http://localhost:5001");
             }
+
             var jsonData = JsonConvert.SerializeObject(user);
+
             try
             {
                 var response = await httpClient.PostAsync("/api/chat/PostUser",
