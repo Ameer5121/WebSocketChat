@@ -130,7 +130,7 @@
             BorderBrush="#FF2C2B2B"/>
 
         <TextBlock Text="{Binding Status}" 
-                   Margin="187,423,229,49"
+                   Margin="187,423,229,47"
                    Grid.Row="1"
                    FontSize="15"
                    TextAlignment="Center"

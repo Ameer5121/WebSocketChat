@@ -109,9 +109,7 @@ namespace WebSocketChat.ViewModels
                 catch (HttpRequestException)
                 {
                     //Server is down.
-                    _connection.Remove("ReceiveData");
-                    OnDisconnect?.Invoke(this, EventArgs.Empty);
-                    break;
+                   await DisconnectFromServer();
                 }
             }
         }

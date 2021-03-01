@@ -101,9 +101,9 @@ namespace WebSocketChat.ViewModels
                         .WithUrl("http://localhost:5001/chathub")
                         .Build();
                     }
+
                     CreateHandlers();
                     await connection.StartAsync();
-
                 });
             }
             catch(HttpRequestException)
@@ -210,7 +210,7 @@ namespace WebSocketChat.ViewModels
         {
             IsConnecting = true;
             var httpClient = new HttpClient();
-           httpClient.Timeout = TimeSpan.FromSeconds(5);
+            httpClient.Timeout = TimeSpan.FromSeconds(5);
             if (connectionType == ConnectionType.External)
             {
                 var isSuccessful = IPAddress.TryParse(CurrentIPAddress, out _);
@@ -221,8 +221,7 @@ namespace WebSocketChat.ViewModels
                 httpClient.BaseAddress = new Uri($"http://{CurrentIPAddress}:5001");
             }
             else
-            {
-                
+            {             
                 httpClient.BaseAddress = new Uri("http://localhost:5001");
             }
             var jsonData = JsonConvert.SerializeObject(user);
