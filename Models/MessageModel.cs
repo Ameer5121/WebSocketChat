@@ -8,18 +8,10 @@ namespace Models
 {
     public struct MessageModel
     {
-        private string _message;
-        private UserModel _user;
 
-       public string Message
-       {
-            get => _message;
-            set => _message = value;
-       }
-       public UserModel User
-       {
-            get => _user;
-            set => _user = value;
-       }
+       public string Message { get; set; }
+      
+       public UserModel User { get; set; }
+      
     }
 }
