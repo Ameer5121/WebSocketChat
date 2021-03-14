@@ -8,9 +8,7 @@ namespace Models
 {
     public struct UserModel
     {
-        public string Name { get; set; }
-    
-        public string EndPoint { get; set; }
-       
+        public string Name { get; set; }   
+        public string EndPoint { get; set; }       
     }
 }

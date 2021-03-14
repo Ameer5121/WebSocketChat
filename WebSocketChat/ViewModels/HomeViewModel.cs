@@ -17,6 +17,7 @@ using System.Windows;
 using Microsoft.AspNetCore.SignalR.Client;
 using WebSocketChat.Events;
 using Newtonsoft.Json;
+using WebSocketChat.Services;
 
 namespace WebSocketChat.ViewModels
 {
@@ -30,7 +31,14 @@ namespace WebSocketChat.ViewModels
         private ConnectionType _selectedconnectionType = ConnectionType.Internal;
         private HubConnection connection;
         private UserModel _currentUser;
+        private IHttpService _httpService;
         public EventHandler<ConnectionEventArgs> OnSuccessfulConnect;
+
+        public HomeViewModel(IHttpService httpSservice)
+        {
+            _httpService = httpSservice;
+        }
+
         public string Name
         {           
             get => _name;
@@ -193,7 +201,7 @@ namespace WebSocketChat.ViewModels
                 {
                     OnSuccessfulConnect?.Invoke(this, new ConnectionEventArgs
                     {
-                        ChatViewModelContext = new ChatViewModel(data, _currentUser, connection)
+                        ChatViewModelContext = new ChatViewModel(data, _currentUser, connection, _httpService)
                     });
                 });
                 connection.Remove("Connected");
@@ -209,30 +217,21 @@ namespace WebSocketChat.ViewModels
         private async Task SendUser(UserModel user, ConnectionType connectionType)
         {
             IsConnecting = true;
-            var httpClient = new HttpClient();
-            httpClient.Timeout = TimeSpan.FromSeconds(5);
             if (connectionType == ConnectionType.External)
             {
                 var isSuccessful = IPAddress.TryParse(CurrentIPAddress, out _);
                 if (!isSuccessful)
                 {
                     throw new FormatException("IP Address formatting Incorrect!");
-                }              
-                httpClient.BaseAddress = new Uri($"http://{CurrentIPAddress}:5001");
+                }
+                _httpService.SetEndPoint(new Uri($"http://{CurrentIPAddress}:5001"));
             }
             else
-            {             
-                httpClient.BaseAddress = new Uri("http://localhost:5001");
+            {
+                _httpService.SetEndPoint(new Uri("http://localhost:5001"));
             }
             var jsonData = JsonConvert.SerializeObject(user);
-
-            var response = await httpClient.PostAsync("/api/chat/PostUser",
-                 new StringContent(jsonData, Encoding.UTF8, "application/json"));
-
-            if (!response.IsSuccessStatusCode)
-            {
-                throw new HttpRequestException($"Could not connect to the server. Status Code: {response.StatusCode}");
-            }
+             await _httpService.PostData("/api/chat/PostUser", jsonData);                
         }
 
         private async Task LogStatus(string message)

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using WebSocketChat.Events;
+using WebSocketChat.Services;
 using WebSocketChat.ViewModels;
 
 namespace WebSocketChat.Views
@@ -17,7 +18,7 @@ namespace WebSocketChat.Views
         public HomeView()
         {
             InitializeComponent();
-            DataContext = new HomeViewModel();
+            DataContext = new HomeViewModel(HttpService.HttpServiceInstance);
             (DataContext as HomeViewModel).OnSuccessfulConnect += ChangeWindow;
         }
 

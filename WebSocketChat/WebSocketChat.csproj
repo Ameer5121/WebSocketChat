@@ -232,6 +232,8 @@
     </ApplicationDefinition>
     <Compile Include="Events\ConnectionEventArgs.cs" />
     <Compile Include="Helper\ScrollBehavior.cs" />
+    <Compile Include="Services\HttpService.cs" />
+    <Compile Include="Services\IHttpService.cs" />
     <Compile Include="ViewModels\ChatViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\App.xaml.cs">

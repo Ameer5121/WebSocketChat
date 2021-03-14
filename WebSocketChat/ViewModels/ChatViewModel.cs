@@ -14,6 +14,7 @@ using WebSocketChat.Commands;
 using System.Windows;
 using System.Collections.Specialized;
 using System.Threading;
+using WebSocketChat.Services;
 
 namespace WebSocketChat.ViewModels
 {
@@ -23,21 +24,20 @@ namespace WebSocketChat.ViewModels
         private ObservableCollection<UserModel> _users;
         private ObservableCollection<MessageModel> _messages;
         private CancellationTokenSource _heartbeatToken;
-        private HttpClient _httpclient;
+        private IHttpService _httpService;
         private bool _isDisconnecting;
         private string _currentMessage;
         private HubConnection _connection;
         public event EventHandler OnDisconnect;
-        public ChatViewModel(DataModel data, UserModel currentuser, HubConnection connection)
+        public ChatViewModel(DataModel data, UserModel currentuser, HubConnection connection, IHttpService httpService)
         {
             _currentUser = currentuser;
             _users = data.Users;
             _messages = data.Messages;
             _connection = connection;
-            _httpclient = new HttpClient();
+            _httpService = httpService;
             _heartbeatToken = new CancellationTokenSource();
             CreateHandlers();
-            _httpclient.BaseAddress = GetEndPoint();
             SendHeartBeat(_heartbeatToken.Token);
         }
 
@@ -76,9 +76,7 @@ namespace WebSocketChat.ViewModels
              var jsonData = JsonConvert.SerializeObject(messagetoSend);
              try
              {
-                 await _httpclient.PostAsync("/api/chat/PostMessage",
-                     new StringContent(jsonData, Encoding.UTF8, "application/json"));
-
+                await _httpService.PostData("/api/chat/PostMessage", jsonData);
                  CurrentMessage = default;
              }
              catch (HttpRequestException)
@@ -104,7 +102,7 @@ namespace WebSocketChat.ViewModels
                 await Task.Delay(2000);
                 try
                 {
-                    var response = await _httpclient.GetAsync("api/chat/GetHeartBeat");
+                    var response = await _httpService.GetData("api/chat/GetHeartBeat");
                 }
                 catch (HttpRequestException)
                 {
@@ -135,19 +133,6 @@ namespace WebSocketChat.ViewModels
                });
             }               
         }
-
-        /// <summary>
-        /// Gets the correct endpoint depending on the connection type.
-        /// </summary>
-        private Uri GetEndPoint()
-        {
-            if (string.IsNullOrEmpty(_currentUser.EndPoint))
-            {
-                return new Uri("http://localhost:5001");
-            }
-            return new Uri($"http://{_currentUser.EndPoint}:5001");
-        }
-
         private async Task DisconnectFromServer()
         {
             IsDisconnecting = true;
