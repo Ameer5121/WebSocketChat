@@ -78,10 +78,9 @@ namespace WebSocketChat.ViewModels
         }
         private bool CanConnectToServer()
         {
-            if (CurrentConnectionType == ConnectionType.External)
-                return string.IsNullOrEmpty(_name) || string.IsNullOrEmpty(CurrentIPAddress) || _isConnecting ? false : true;
+            if (CurrentConnectionType == ConnectionType.External && string.IsNullOrEmpty(CurrentIPAddress))
+                return false;
 
-            //Disable the connect button if _isHosting is true since it automatically connects.
             return string.IsNullOrEmpty(_name) || _isConnecting || _isHosting ? false : true;
         }
         private async Task ConnectToServer()
@@ -231,7 +230,7 @@ namespace WebSocketChat.ViewModels
                 _httpService.SetEndPoint(new Uri("http://localhost:5001"));
             }
             var jsonData = JsonConvert.SerializeObject(user);
-             await _httpService.PostData("/api/chat/PostUser", jsonData);                
+            await _httpService.PostData("/api/chat/PostUser", jsonData);                
         }
 
         private async Task LogStatus(string message)
