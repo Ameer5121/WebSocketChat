@@ -14,12 +14,10 @@ namespace ChattingHub.Controllers
     [ApiController]
     public class ChatController : ControllerBase
     {
-        private ILogger<ChatController> _logger;
         private ChatHub _chathub;
         private IHubContext<ChatHub> _hubContext;
-        public ChatController(ILogger<ChatController> logger, IHubContext<ChatHub> hubContext)
+        public ChatController(IHubContext<ChatHub> hubContext)
         {
-            _logger = logger;
             _hubContext = hubContext;
             _chathub = new ChatHub();
         }
@@ -27,20 +25,14 @@ namespace ChattingHub.Controllers
         [Route("PostUser")]
         public void PostUser(UserModel user)
         {
-            if(user.Name != null)
-            {
-                _chathub.AddUserData(user);
-            }
+           _chathub.AddUserData(user);  
         }
 
         [HttpPost]
         [Route("PostMessage")]
         public void AddMessage(MessageModel message)
         {
-            if (message.Message != null && message.User.Name != null)
-            {
-                _chathub.AddMessageData(message, _hubContext);
-            }
+           _chathub.AddMessageData(message, _hubContext);
         }
 
         [HttpGet]
