@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public struct UserModel
+    public class UserModel
     {
         public string Name { get; set; }   
         public string EndPoint { get; set; }       
