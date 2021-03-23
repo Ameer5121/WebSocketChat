@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public struct MessageModel
+    public class MessageModel
     {
 
        public string Message { get; set; }
