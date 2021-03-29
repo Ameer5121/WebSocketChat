@@ -90,7 +90,7 @@
         <materialDesign:PackIcon Kind="Account" Margin="193,194,0,0" Grid.Row="1" Height="25" Width="22"></materialDesign:PackIcon>
         <TextBox HorizontalAlignment="Right" 
                  Width="184" 
-                 Margin="0,172,250,283" 
+                 Margin="0,163,250,283" 
                  Grid.Row="1"
                  FontSize="20"
                  BorderBrush="White"
